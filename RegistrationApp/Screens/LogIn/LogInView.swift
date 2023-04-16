@@ -9,6 +9,7 @@ import UIKit
 
 protocol LogInViewDelegate: AnyObject {
     func logInButtonAuthTapped()
+    func logInEyeButtonTapped()
 }
 
 class LogInView: UIView {
@@ -31,6 +32,7 @@ class LogInView: UIView {
     let statusLabelLogin = CustomLabel(title: .textCheckEmail, textColorLabel: .black, alphaLabel: 0, fontCastumLabel: .montserrat16())
     let labelLogIn = CustomLabel(title: .welcomeBack, textColorLabel: .black, alphaLabel: 1, fontCastumLabel: .helvetica30())
     lazy var logInButtonAuth = CustomButton(title: .textLogIn, colorTitle: .backgroundColorWhite, backgroundColorButton: .blue, configurationImage: "", imageRight: 0, imageLeft: 0)
+    let eyeButton = EyeButton()
     let passwordTextFildLogIn = CustomTextField(placeholderTextField: .textPassword)
     let mailTextFildLogIn = CustomTextField(placeholderTextField: .textEmail)
     let collectionViewLogIn = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -45,6 +47,7 @@ class LogInView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setupPasswordTF()
         setConstrains()
     }
     required init?(coder: NSCoder) {
@@ -52,19 +55,27 @@ class LogInView: UIView {
     }
     
     // MARK: - Flow funcs
-    
+     func setupPasswordTF() {
+        passwordTextFildLogIn.rightView = eyeButton
+        passwordTextFildLogIn.rightViewMode = .always
+        passwordTextFildLogIn.isSecureTextEntry = true
+    }
     private func setupView() {
         addSubview(contentViewBackLog)
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(stackViewLogIn)
         logInButtonAuth.addTarget(self, action: #selector(logInButtonAuthTapped), for: .touchUpInside)
+        eyeButton.addTarget(self, action: #selector(logInEyeButtonTapped), for: .touchUpInside)
     }
     
     // MARK: - Flow funcs(@objc)
     
     @objc func logInButtonAuthTapped() {
         delegate?.logInButtonAuthTapped()
+    }
+    @objc func logInEyeButtonTapped() {
+        delegate?.logInEyeButtonTapped()
     }
 }
 // MARK: - SetConstrains

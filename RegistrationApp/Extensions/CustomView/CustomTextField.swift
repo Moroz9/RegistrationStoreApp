@@ -11,7 +11,6 @@ class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
     init(placeholderTextField: String) {
         super.init(frame: .zero)
         backgroundColor = .textColorTextFieldGray
@@ -26,7 +25,6 @@ class CustomTextField: UITextField {
         tintColor = .titntColorTextFieldGray
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

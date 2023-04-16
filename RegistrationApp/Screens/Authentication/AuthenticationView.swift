@@ -89,7 +89,6 @@ final class AuthenticationView: UIView {
     @objc func appleButtonAuthTapped() {
         delegate?.appleButtonTapped()
     }
-    
 }
 extension AuthenticationView {
     private func setConstrains() {

@@ -43,6 +43,7 @@
 		46035C9B29E9962000BE0D0A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035C9A29E9962000BE0D0A /* ProfileViewModel.swift */; };
 		46035C9E29E996DF00BE0D0A /* CreateCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */; };
 		46035CA029E9974700BE0D0A /* OnePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035C9F29E9974700BE0D0A /* OnePageVC.swift */; };
+		46035CA229EAD2FE00BE0D0A /* EyeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035CA129EAD2FE00BE0D0A /* EyeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		46035C9A29E9962000BE0D0A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomNavigationBar.swift; sourceTree = "<group>"; };
 		46035C9F29E9974700BE0D0A /* OnePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePageVC.swift; sourceTree = "<group>"; };
+		46035CA129EAD2FE00BE0D0A /* EyeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 				46035C5A29E1EE6E00BE0D0A /* CustomButton.swift */,
 				46035C5C29E1EED700BE0D0A /* CustomLabel.swift */,
 				46035C6429E1F7F000BE0D0A /* CustomTextField.swift */,
+				46035CA129EAD2FE00BE0D0A /* EyeButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				46035C6F29E1FC3100BE0D0A /* UIButtonImage.swift in Sources */,
 				46035C5829E1EE1D00BE0D0A /* UIStackView.swift in Sources */,
 				46035C5129E1EB5700BE0D0A /* AuthenticationView.swift in Sources */,
+				46035CA229EAD2FE00BE0D0A /* EyeButton.swift in Sources */,
 				46035C4C29E1EA9200BE0D0A /* AuthenticationVC.swift in Sources */,
 				46035C5529E1EDAC00BE0D0A /* UIView.swift in Sources */,
 				46035C8529E957DE00BE0D0A /* ALogInViewController.swift in Sources */,

@@ -14,6 +14,7 @@ final class LogInViewVC: ALogInViewController<LogInView> {
     private let verificationModel = VerificationModel()
     private let passwordValidType: String.ValidTypes = .password
     private let emailValidType: String.ValidTypes = .email
+    private var isPrivate = true
     
     // MARK: - Lifecycle funcs
     
@@ -74,6 +75,14 @@ final class LogInViewVC: ALogInViewController<LogInView> {
 // MARK: - LogInViewDelegate
 
 extension LogInViewVC: LogInViewDelegate {
+    func logInEyeButtonTapped() {
+        let imageName = isPrivate ? "ImagEays" : "ImagEays.Slash"
+        
+        myLogView.passwordTextFildLogIn.isSecureTextEntry.toggle()
+        myLogView.eyeButton.setImage(UIImage(named: imageName), for: .normal)
+        isPrivate.toggle()
+    }
+    
     func logInButtonAuthTapped() {
         
         let emailNameText = myLogView.mailTextFildLogIn.text ?? ""
@@ -128,7 +137,6 @@ extension LogInViewVC: UITextFieldDelegate {
                                                            wrongMessage: .wrongMessageeP,
                                                            string: string,
                                                            range: range)
-            
         default:
             break
         }
@@ -145,11 +153,9 @@ extension LogInViewVC: UITextFieldDelegate {
         myLogView.passwordTextFildLogIn.resignFirstResponder()
         return true
     }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        myLogView.eyeButton.isEnabled = !text.isEmpty
     }
 }
 
