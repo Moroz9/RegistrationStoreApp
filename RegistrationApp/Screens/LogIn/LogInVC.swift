@@ -91,7 +91,7 @@ extension LogInViewVC: LogInViewDelegate {
             
             if checkEmail == true {
                 if checkPassword == true {
-                    let controller = MainTabBerController()
+                    let controller = MainTabBarController()
                     navigationController?.navigationBar.isHidden = true
                     navigationController?.pushViewController(controller, animated: true)
                 } else {
@@ -121,15 +121,19 @@ extension LogInViewVC: UITextFieldDelegate {
         case myLogView.mailTextFildLogIn: setTextfield(textField: myLogView.mailTextFildLogIn,
                                                        label: myLogView.statusLabelLogin,
                                                        validType: emailValidType,
-                                                       validMessage: .validMessageeMail,
-                                                       wrongMessage: .wrongMessageeMail,
+                                                       validMessage:
+                                                        Resources.TextNamed.validMessageeMail,
+                                                       wrongMessage:
+                                                        Resources.TextNamed.wrongMessageeMail,
                                                        string: string,
                                                        range: range)
         case myLogView.passwordTextFildLogIn: setTextfield(textField: myLogView.passwordTextFildLogIn,
                                                            label: myLogView.statusLabelLogin,
                                                            validType: passwordValidType,
-                                                           validMessage: .validMessagePassword,
-                                                           wrongMessage: .wrongMessageeP,
+                                                           validMessage:
+                                                            Resources.TextNamed.validMessagePassword,
+                                                           wrongMessage:
+                                                            Resources.TextNamed.wrongMessageeP,
                                                            string: string,
                                                            range: range)
         default:

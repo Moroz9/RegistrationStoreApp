@@ -44,6 +44,7 @@ final class ProfileVC: UIViewController {
         view.addSubview(tableView)
         let castomTitleView = createCustomTitleView(contactName: "Profile", contactDescription: "", contactImage: "")
         navigationItem.titleView = castomTitleView
+        
     tableView.register(ProfileChangePhotoViewCell.self, forCellReuseIdentifier: CellIdentifier.idProfileChangePhotoCell)
     tableView.register(ButtonUpLoadTableViewCell.self, forCellReuseIdentifier:
         CellIdentifier.idProfileButtonCell)

@@ -36,12 +36,12 @@ final class CustomLabel: UILabel {
     }
     private func setNotValidSetting() {
         text = "Mail is not valid. Example: name@domein.ru"
-        textColor = .textColorStatusLabelRed
+        textColor = Resources.Color.textColorStatusLabelRed
         alpha = 1
     }
     private func setValidSetting() {
         text = "Mail is valid"
-        textColor = .textColorStatusLabelGreen
+        textColor = Resources.Color.textColorStatusLabelGreen
         alpha = 1
     }
 }

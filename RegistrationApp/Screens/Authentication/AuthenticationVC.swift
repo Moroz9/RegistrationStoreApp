@@ -88,7 +88,7 @@ extension AuthenticationVC: AuthenticationViewDelegate {
                 storage.set(lastNameText, forkey: .lastName)
                 storage.set(passwordText, forkey: .password)
                 storage.set(emailText, forkey: .email)
-                let controller = MainTabBerController()
+                let controller = MainTabBarController()
                 navigationController?.navigationBar.isHidden = true
                 navigationController?.pushViewController(controller, animated: true)
             } else {
@@ -122,29 +122,29 @@ extension AuthenticationVC: UITextFieldDelegate {
         case myView.firstNameTextFild: setTextfield(textField: myView.firstNameTextFild,
                                                     label: myView.statusLabel,
                                                     validType: firstNameValidType,
-                                                    validMessage: .validMessageFirst,
-                                                    wrongMessage: .wrongMessageeF,
+                                                    validMessage: Resources.TextNamed.validMessageFirst,
+                                                    wrongMessage: Resources.TextNamed.wrongMessageeF,
                                                     string: string,
                                                     range: range)
         case myView.lastNameTextFild: setTextfield(textField: myView.lastNameTextFild,
                                                    label: myView.statusLabel,
                                                    validType: firstNameValidType,
-                                                   validMessage: .validMessageLast,
-                                                   wrongMessage: .wrongMessageeL,
+                                                   validMessage: Resources.TextNamed.validMessageLast,
+                                                   wrongMessage: Resources.TextNamed.wrongMessageeL,
                                                    string: string,
                                                    range: range)
         case myView.passwordTextFild: setTextfield(textField: myView.passwordTextFild,
                                                    label: myView.statusLabel,
                                                    validType: passwordValidType,
-                                                   validMessage: .validMessagePassword,
-                                                   wrongMessage: .wrongMessageeP,
+                                                   validMessage: Resources.TextNamed.validMessagePassword,
+                                                   wrongMessage: Resources.TextNamed.wrongMessageeP,
                                                    string: string,
                                                    range: range)
         case myView.mailTextFild: setTextfield(textField: myView.mailTextFild,
                                                label: myView.statusLabel,
                                                validType: emailValidType,
-                                               validMessage: .validMessageeMail,
-                                               wrongMessage: .wrongMessageeMail,
+                                               validMessage: Resources.TextNamed.validMessageeMail,
+                                               wrongMessage: Resources.TextNamed.wrongMessageeMail,
                                                string: string,
                                                range: range)
         default:

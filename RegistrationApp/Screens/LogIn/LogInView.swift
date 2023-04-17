@@ -24,13 +24,13 @@ class LogInView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    let statusLabelLogin = CustomLabel(title: .textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelLogIn = CustomLabel(title: .welcomeBack, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
-    lazy var logInButtonAuth = CustomButton(title: .textLogIn, colorTitle: Resources.Color.backgroundButtonText,
+    let statusLabelLogin = CustomLabel(title: Resources.TextNamed.textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
+    let labelLogIn = CustomLabel(title: Resources.TextNamed.welcomeBack, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    lazy var logInButtonAuth = CustomButton(title: Resources.TextNamed.textLogIn, colorTitle: Resources.Color.backgroundButtonText,
     backgroundColorButton: Resources.Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
     let eyeButton = EyeButton()
-    let passwordTextFildLogIn = CustomTextField(placeholderTextField: .textPassword)
-    let mailTextFildLogIn = CustomTextField(placeholderTextField: .textEmail)
+    let passwordTextFildLogIn = CustomTextField(placeholderTextField: Resources.TextNamed.textPassword)
+    let mailTextFildLogIn = CustomTextField(placeholderTextField: Resources.TextNamed.textEmail)
     let collectionViewLogIn = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var stackViewLogIn = UIStackView(arrangedSubviews: [labelLogIn, statusLabelLogin, mailTextFildLogIn,
                                                              passwordTextFildLogIn, logInButtonAuth,
