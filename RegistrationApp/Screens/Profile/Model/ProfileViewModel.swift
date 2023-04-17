@@ -59,7 +59,7 @@ struct PersonsModel {
 extension PersonsModel {
     
     static var exampleList: [PersonsModel] {
-        let person = PersonsModel(name: "Name", changeName: "Change photo", image: UIImage(named: "ImagePhoto")!)
+        let person = PersonsModel(name: "Name", changeName: "Change photo", image: UIImage())
         return [person]
     }
 }

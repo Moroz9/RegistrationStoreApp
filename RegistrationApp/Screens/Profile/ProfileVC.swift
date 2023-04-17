@@ -11,10 +11,11 @@ final class ProfileVC: UIViewController {
     // MARK: - Let \ Var
     let contentViewBack: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = .backgroundCastumColor
+        imageView.backgroundColor = Resources.Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private let storage: UserDefaultsManagerProtocol = UserDefaultsManager()
     private var dataSource = [Section]()
     private var profilePersons = PersonsModel.exampleList
     private var profileUpLoadItemButtonModel = UpLoadItemButtonModel.exampleList
@@ -33,6 +34,7 @@ final class ProfileVC: UIViewController {
         super.viewDidLoad()
         setupViews()
         setProfileButtonSettingsConstrains()
+        createCustomNavigationBar()
         setData()
         dataSource = createDataSource()
     }
@@ -64,13 +66,19 @@ final class ProfileVC: UIViewController {
 
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//        var chosenImage = UIImage()
-//        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-//            chosenImage = image
-//        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//            chosenImage = image
-//        }
-//        picker.dismiss(animated: true, completion: nil)
+        var chosenImage = UIImage()
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            chosenImage = image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            chosenImage = image
+        }
+        
+        guard let data = chosenImage.jpegData(compressionQuality: 0.5) else { return }
+            let encoded = try? PropertyListEncoder().encode(data)
+            storage.set(encoded, forkey: .imagePhoto)
+        
+        picker.dismiss(animated: true, completion: nil)
+        tableView.reloadData()
     }
 }
 // MARK: - ProfileVC
@@ -127,24 +135,6 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             return cell ?? UITableViewCell()
         }
     }
-}
-// MARK: - ProfileVC
-
-extension ProfileVC {
-    private func setProfileButtonSettingsConstrains() {
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            contentViewBack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            contentViewBack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            contentViewBack.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            contentViewBack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath {
@@ -152,7 +142,6 @@ extension ProfileVC {
             showPicker()
         case [1, 0]:
             print("at ", [indexPath.section], [indexPath.row])
-            
         case [2, 0]:
             print("at ", [indexPath.section], [indexPath.row])
         case [2, 1]:
@@ -173,5 +162,23 @@ extension ProfileVC {
         default:
             print("Error")
         }
+    }
+}
+// MARK: - ProfileVC
+
+extension ProfileVC {
+    private func setProfileButtonSettingsConstrains() {
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            contentViewBack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            contentViewBack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            contentViewBack.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            contentViewBack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
     }
 }

@@ -13,7 +13,7 @@ protocol UserDefaultsManagerProtocol {
     func int(forKey key: UserDefaultsManager.SettingsKyes) -> Int?
     func string(forkey key: UserDefaultsManager.SettingsKyes) -> String?
     func dict(forKey key: UserDefaultsManager.SettingsKyes) -> [String: Any]?
-    func date(forKey key: UserDefaultsManager.SettingsKyes) -> Date?
+    func date(forKey key: UserDefaultsManager.SettingsKyes) -> Data?
     func bool(forKey key: UserDefaultsManager.SettingsKyes) -> Bool?
     func codableData<T: Decodable> (forKey key: UserDefaultsManager.SettingsKyes) -> T?
 }
@@ -25,6 +25,7 @@ final class UserDefaultsManager {
         case lastName
         case email
         case password
+        case imagePhoto
     }
     private func store(_ object: Any?, key: String) {
         userDefaults.set(object, forKey: key)
@@ -52,8 +53,8 @@ extension UserDefaultsManager: UserDefaultsManagerProtocol {
     func dict(forKey key: SettingsKyes) -> [String: Any]? {
         restore(forKey: key.rawValue) as? [String: Any]
     }
-    func date(forKey key: SettingsKyes) -> Date? {
-        restore(forKey: key.rawValue) as? Date
+    func date(forKey key: SettingsKyes) -> Data? {
+        restore(forKey: key.rawValue) as? Data
     }
     func bool(forKey key: SettingsKyes) -> Bool? {
         restore(forKey: key.rawValue) as? Bool

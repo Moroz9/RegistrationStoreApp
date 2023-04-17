@@ -18,24 +18,18 @@ final class AuthenticationView: UIView {
     
     // MARK: - Var/Let
     
-    let contentViewBack: UIView = {
-        let imageView = UIView()
-        imageView.backgroundColor = .backgroundCastumColor
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    let contentViewBack = UIView(backgroundColorView: Resources.Color.backgroundView)
     let contentView: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = .backgroundCastumColor
+        imageView.backgroundColor = Resources.Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     let scrollView = UIScrollView(imageName: nil)
-    let statusLabel = CustomLabel(title: .textCheckEmail, textColorLabel: .black, alphaLabel: 0,
-                                  fontCastumLabel: .montserrat16())
-    let labelSignIn = CustomLabel(title: .textSignIn, textColorLabel: .black, alphaLabel: 1,
-                                  fontCastumLabel: .helvetica30())
-    lazy var signInButtonAuth = CustomButton(title: .textSignIn, colorTitle: .backgroundColorWhite, backgroundColorButton: .blue, configurationImage: "", imageRight: 0, imageLeft: 0)
+    let statusLabel = CustomLabel(title: .textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
+    let labelSignIn = CustomLabel(title: .textSignIn, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    lazy var signInButtonAuth = CustomButton(title: .textSignIn, colorTitle: Resources.Color.backgroundButtonText,
+        backgroundColorButton: Resources.Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
     lazy var logInButtonAuth = CustomButton(title: .textAlradyHaveAnAccoutn, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "", imageRight: 0, imageLeft: 0)
     lazy var googleButtonAuth = CustomButton(title: .textSignInWithGoogle, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "ImageGoogle", imageRight: 10, imageLeft: 0)
     lazy var appleButtonAuth = CustomButton(title: .textSignInWithApple, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "ImageApple", imageRight: 20, imageLeft: 0)

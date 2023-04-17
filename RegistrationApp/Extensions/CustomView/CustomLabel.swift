@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomLabel: UILabel {
+final class CustomLabel: UILabel {
     public var isValid: Bool  = false {
         didSet {
             if self.isValid {

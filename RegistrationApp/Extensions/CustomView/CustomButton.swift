@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+final class CustomButton: UIButton {
     public var isValid: Bool  = false {
         didSet {
             if self.isValid {

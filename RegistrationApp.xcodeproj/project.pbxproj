@@ -44,6 +44,8 @@
 		46035C9E29E996DF00BE0D0A /* CreateCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */; };
 		46035CA029E9974700BE0D0A /* OnePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035C9F29E9974700BE0D0A /* OnePageVC.swift */; };
 		46035CA229EAD2FE00BE0D0A /* EyeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035CA129EAD2FE00BE0D0A /* EyeButton.swift */; };
+		46035CAB29EBF8D000BE0D0A /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035CAA29EBF8D000BE0D0A /* HexColor.swift */; };
+		46035CAD29EBF92600BE0D0A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46035CAC29EBF92600BE0D0A /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomNavigationBar.swift; sourceTree = "<group>"; };
 		46035C9F29E9974700BE0D0A /* OnePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePageVC.swift; sourceTree = "<group>"; };
 		46035CA129EAD2FE00BE0D0A /* EyeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeButton.swift; sourceTree = "<group>"; };
+		46035CAA29EBF8D000BE0D0A /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
+		46035CAC29EBF92600BE0D0A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 		46035C3D29E1E99000BE0D0A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				46035CAE29EBF98C00BE0D0A /* Color */,
 				46035C9C29E996C600BE0D0A /* Extention Profile */,
 				46035C5929E1EE4B00BE0D0A /* CustomView */,
 				46035C5629E1EDF300BE0D0A /* UIKit */,
@@ -222,7 +227,6 @@
 				46035C5429E1EDAC00BE0D0A /* UIView.swift */,
 				46035C5729E1EE1D00BE0D0A /* UIStackView.swift */,
 				46035C5E29E1EF0C00BE0D0A /* UIFont.swift */,
-				46035C5229E1EBE500BE0D0A /* UIColor.swift */,
 				46035C6029E1F02C00BE0D0A /* UIScrollView.swift */,
 				46035C6C29E1FBF200BE0D0A /* UILabel.swift */,
 				46035C6E29E1FC3100BE0D0A /* UIButtonImage.swift */,
@@ -302,6 +306,16 @@
 				46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */,
 			);
 			path = "Extention Profile";
+			sourceTree = "<group>";
+		};
+		46035CAE29EBF98C00BE0D0A /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				46035CAA29EBF8D000BE0D0A /* HexColor.swift */,
+				46035CAC29EBF92600BE0D0A /* Resources.swift */,
+				46035C5229E1EBE500BE0D0A /* UIColor.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +434,9 @@
 				46035C9429E9959D00BE0D0A /* ProfileChangePhoto.swift in Sources */,
 				46035C7B29E1FEBB00BE0D0A /* UserDefaultsManager.swift in Sources */,
 				46035C5D29E1EED700BE0D0A /* CustomLabel.swift in Sources */,
+				46035CAD29EBF92600BE0D0A /* Resources.swift in Sources */,
 				46035C7729E1FDCA00BE0D0A /* UIViewController.swift in Sources */,
+				46035CAB29EBF8D000BE0D0A /* HexColor.swift in Sources */,
 				46035C9E29E996DF00BE0D0A /* CreateCustomNavigationBar.swift in Sources */,
 				46035C7129E1FC5A00BE0D0A /* UIImageView.swift in Sources */,
 				46035C6529E1F7F000BE0D0A /* CustomTextField.swift in Sources */,

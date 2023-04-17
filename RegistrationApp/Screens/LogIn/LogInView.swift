@@ -16,27 +16,22 @@ class LogInView: UIView {
     
     // MARK: - Var/Let
     
-    let contentViewBackLog: UIView = {
-        let imageView = UIView()
-        imageView.backgroundColor = .backgroundCastumColor
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    let contentViewBackLog = UIView(backgroundColorView: Resources.Color.backgroundView)
     let scrollView = UIScrollView(imageName: nil)
     let contentView: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = .backgroundCastumColor
+        imageView.backgroundColor = Resources.Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    let statusLabelLogin = CustomLabel(title: .textCheckEmail, textColorLabel: .black, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelLogIn = CustomLabel(title: .welcomeBack, textColorLabel: .black, alphaLabel: 1, fontCastumLabel: .helvetica30())
-    lazy var logInButtonAuth = CustomButton(title: .textLogIn, colorTitle: .backgroundColorWhite, backgroundColorButton: .blue, configurationImage: "", imageRight: 0, imageLeft: 0)
+    let statusLabelLogin = CustomLabel(title: .textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
+    let labelLogIn = CustomLabel(title: .welcomeBack, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    lazy var logInButtonAuth = CustomButton(title: .textLogIn, colorTitle: Resources.Color.backgroundButtonText,
+    backgroundColorButton: Resources.Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
     let eyeButton = EyeButton()
     let passwordTextFildLogIn = CustomTextField(placeholderTextField: .textPassword)
     let mailTextFildLogIn = CustomTextField(placeholderTextField: .textEmail)
     let collectionViewLogIn = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     lazy var stackViewLogIn = UIStackView(arrangedSubviews: [labelLogIn, statusLabelLogin, mailTextFildLogIn,
                                                              passwordTextFildLogIn, logInButtonAuth,
                                                              collectionViewLogIn ], axis: .vertical, spacing: 20)

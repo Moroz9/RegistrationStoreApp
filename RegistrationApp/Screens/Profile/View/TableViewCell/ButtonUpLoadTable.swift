@@ -19,12 +19,13 @@ final class ButtonUpLoadTableViewCell: UITableViewCell {
     }
     private let upLoadButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = #colorLiteral(red: 0.3058823529, green: 0.3333333333, blue: 0.8431372549, alpha: 1)
+        button.backgroundColor = Resources.Color.backgroundButton
         button.setTitle("Upload item", for: .normal)
-        let color = #colorLiteral(red: 0.9176470588, green: 0.9176470588, blue: 0.9176470588, alpha: 1)
-        button.setTitleColor(color, for: .normal)
+        button.setTitleColor(Resources.Color.backgroundButtonText, for: .normal)
         button.layer.cornerRadius = 15
-        button.titleLabel?.font = UIFont(name: "Montserrat", size: 20)
+        button.titleLabel?.font = .montserrat30()
+        button.setImage(UIImage(named: "ImageButton"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

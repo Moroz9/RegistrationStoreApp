@@ -7,22 +7,22 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     init(placeholderTextField: String) {
         super.init(frame: .zero)
-        backgroundColor = .textColorTextFieldGray
+        backgroundColor = Resources.Color.backgroundTextFied
         borderStyle = .none
         layer.cornerRadius = 10
-        textColor = .titntColorTextFieldGray
+        textColor = Resources.Color.textColorTextField
         clearButtonMode = .always
         clearButtonMode = .whileEditing
         returnKeyType = .done
         placeholder = placeholderTextField
         textAlignment = .center
-        tintColor = .titntColorTextFieldGray
+        tintColor = Resources.Color.titntColorTextField
         translatesAutoresizingMaskIntoConstraints = false
     }
     required init?(coder: NSCoder) {

@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     func createCustomNavigationBar() {
-        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.barTintColor = Resources.Color.backgroundView
     }
     func createCustomTitleView(contactName: String, contactDescription: String, contactImage: String)
     -> UIView {

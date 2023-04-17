@@ -36,7 +36,6 @@ final class LogInViewVC: ALogInViewController<LogInView> {
     private func setTextfield(textField: UITextField, label: UILabel, validType: String.ValidTypes, validMessage: String, wrongMessage: String, string: String, range: NSRange) {
         let text = (textField.text ?? "") + string
         let result: String
-        
         if range.length == 1 {
             let end = text.index(text.startIndex, offsetBy: text.count - 1)
             result = String(text[text.startIndex..<end])
@@ -44,12 +43,10 @@ final class LogInViewVC: ALogInViewController<LogInView> {
             result = text
         }
         textField.text = result
-        
         if textField == myLogView.mailTextFildLogIn {
             verificationModel.getFilterMail(text: result)
             myLogView.collectionViewLogIn.reloadData()
         }
-        
         if result.isValidType(validType: validType) {
             myLogView.statusLabelLogin.text = validMessage
             myLogView.statusLabelLogin.textColor = .green
@@ -84,7 +81,6 @@ extension LogInViewVC: LogInViewDelegate {
     }
     
     func logInButtonAuthTapped() {
-        
         let emailNameText = myLogView.mailTextFildLogIn.text ?? ""
         let passwordText = myLogView.passwordTextFildLogIn.text ?? ""
         let checkEmail = chekEmail(mail: emailNameText)
@@ -94,7 +90,6 @@ extension LogInViewVC: LogInViewDelegate {
             && emailNameText.isValidType(validType: emailValidType) == true {
             
             if checkEmail == true {
-                
                 if checkPassword == true {
                     let controller = MainTabBerController()
                     navigationController?.navigationBar.isHidden = true

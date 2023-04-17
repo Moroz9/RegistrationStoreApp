@@ -12,11 +12,13 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
      var photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 30
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private let storage: UserDefaultsManagerProtocol = UserDefaultsManager()
-    private var labelChangeNameText = UILabel(text: "Not", textColor: .black,
+    private var labelChangeNameText = UILabel(text: "", textColor: .black,
                     font: UIFont.systemFont(ofSize: 8), alignment: .left)
     private var labelNameText = UILabel(text: "", textColor: .black,
                     font: UIFont.systemFont(ofSize: 20, weight: .bold), alignment: .center)
@@ -49,7 +51,11 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
         ])
     }
     func setData(_ user: PersonsModel ) {
-        photoImageView.image = user.image
+        guard let data = storage.date(forKey: .imagePhoto) else { return }
+        guard let decoded = try? PropertyListDecoder().decode(Data.self, from: data) else { return }
+             let image = UIImage(data: decoded)
+        
+        photoImageView.image = image ?? UIImage(named: "ImagePhoto")
         labelChangeNameText.text = user.changeName
         labelNameText.text = (storage.string(forkey: .firstName) ?? " Dosn't found Name") + " " + ( storage.string(forkey: .lastName) ?? " Dosn't found Name")
     }
