@@ -31,9 +31,9 @@ enum ListSection {
             return ""
         case .latest:
             return "latest"
-        case .flashSale(_):
+        case .flashSale:
             return "Flash Sale"
-        case .brands(_):
+        case .brands:
             return "Brands"
         }
     }

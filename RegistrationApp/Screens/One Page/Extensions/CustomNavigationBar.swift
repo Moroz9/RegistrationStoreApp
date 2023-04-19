@@ -11,7 +11,7 @@ extension UIViewController {
     func createCustomNavigationBarPageOne() {
         navigationController?.navigationBar.barTintColor = Resources.Color.backgroundView
     }
-    func createCustomTitleViewPageOne(contactName: String, contactDescription: String, contactImage: String)
+    func createCustomTitleViewPageOne(contactName: NSAttributedString, contactDescription: String, contactImage: String)
     -> UIView {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: 180, height: 50)
@@ -22,9 +22,9 @@ extension UIViewController {
         view.addSubview(imageContact)
         
         let nameLabel = UILabel()
-        nameLabel.text = contactName
-        nameLabel.frame = CGRect(x: 25, y: 10, width: 150, height: 20)
-        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        nameLabel.attributedText = contactName
+        nameLabel.frame = CGRect(x: 25, y: 10, width: 150, height: 25)
+        nameLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         view.addSubview(nameLabel)
         
         let descriptionLabel = UILabel()
@@ -49,5 +49,22 @@ extension UIViewController {
         
         let menuBarItem = UIBarButtonItem(customView: button)
         return menuBarItem
+    }
+    
+    func updateAttributesText() -> NSAttributedString {
+        let stingOne = Resources.TextNamed.tradeBy
+        let attributesOne = [
+            NSAttributedString.Key.foregroundColor: Resources.Color.colotTextBlack
+        ]
+        let stingTwo = Resources.TextNamed.textBata
+        let attributesTwo = [
+            NSAttributedString.Key.foregroundColor: Resources.Color.colotCustomTextBlue
+        ]
+        let attributesStingOne = NSMutableAttributedString(string: stingOne, attributes: attributesOne)
+        let attributesStingTwo = NSAttributedString(string: stingTwo, attributes: attributesTwo)
+        
+        attributesStingOne.append(attributesStingTwo)
+        
+        return attributesStingOne
     }
 }

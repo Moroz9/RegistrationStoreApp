@@ -39,8 +39,7 @@ final class OnePageVC: UIViewController {
         backgroundImageView.addSubview(collectionView)
         
         let clipPathGroup = createCustomButtonPageOne(imageName: Resources.TextNamed.clippathgroup, selector: #selector (barButtonTapped))
-         let castomTitleView = createCustomTitleViewPageOne(contactName: "Trade by data",
-                                                     contactDescription: Resources.TextNamed.location, contactImage: Resources.TextNamed.imagePhoto)
+        let castomTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: Resources.TextNamed.location, contactImage: Resources.TextNamed.imagePhoto)
         navigationItem.leftBarButtonItem = clipPathGroup
         navigationItem.titleView = castomTitleView
         
@@ -76,12 +75,12 @@ extension OnePageVC {
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            searhTextFild.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 120),
+            searhTextFild.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             searhTextFild.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 56),
             searhTextFild.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -56),
             searhTextFild.heightAnchor.constraint(equalToConstant: 30),
 
-            collectionView.topAnchor.constraint(equalTo: searhTextFild.bottomAnchor, constant: 5),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             collectionView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 0)

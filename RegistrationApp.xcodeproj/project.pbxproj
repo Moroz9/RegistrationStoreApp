@@ -198,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				46035CAE29EBF98C00BE0D0A /* Resources + HexColor */,
-				46035C9C29E996C600BE0D0A /* Extention Profile */,
 				46035C5929E1EE4B00BE0D0A /* CustomView */,
 				46035C5629E1EDF300BE0D0A /* UIKit */,
 				46035C7829E1FE1500BE0D0A /* AAuthenticationViewController.swift */,
@@ -294,6 +293,7 @@
 		46035C8D29E9950400BE0D0A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				46035C9C29E996C600BE0D0A /* Extention */,
 				46035C9929E9961400BE0D0A /* Model */,
 				46035C9029E9957D00BE0D0A /* View */,
 				46035C8E29E9951400BE0D0A /* ProfileVC.swift */,
@@ -327,12 +327,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		46035C9C29E996C600BE0D0A /* Extention Profile */ = {
+		46035C9C29E996C600BE0D0A /* Extention */ = {
 			isa = PBXGroup;
 			children = (
 				46035C9D29E996DF00BE0D0A /* CreateCustomNavigationBar.swift */,
 			);
-			path = "Extention Profile";
+			path = Extention;
 			sourceTree = "<group>";
 		};
 		46035CAE29EBF98C00BE0D0A /* Resources + HexColor */ = {

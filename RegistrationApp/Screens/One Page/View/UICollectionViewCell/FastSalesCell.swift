@@ -20,7 +20,7 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
     private let categoryFastSaleLabel = UILabel(text: "Category", textColor: .black,
                                      font: UIFont.systemFont(ofSize: 8), alignment: .left)
     private let nameFastSaleLabel = UILabel(text: "Nev Balsnce sneacers", textColor: .white,
-                                     font: UIFont.systemFont(ofSize: 28, weight: .bold), alignment: .center)
+                                     font: UIFont.systemFont(ofSize: 25, weight: .bold), alignment: .center)
     private let priceFastSaleLabel = UILabel(text: "$33,00", textColor: .white,
                                      font: UIFont.systemFont(ofSize: 10), alignment: .left)
     private let labelSales = UILabel(text: "Sales 30%", textColor: .white,
@@ -41,7 +41,7 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
     }
    private func setupView() {
        addSubview(backgraundFastSaleImageView)
-       backgraundFastSaleImageView.backgroundColor = .gray
+       backgraundFastSaleImageView.backgroundColor = .placeholderText
        backgraundFastSaleImageView.addSubview(categorySaleImageView)
        categorySaleImageView.addSubview(categoryFastSaleLabel)
        backgraundFastSaleImageView.addSubview(nameFastSaleLabel)
@@ -59,20 +59,17 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
             backgraundFastSaleImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             backgraundFastSaleImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
-            categorySaleImageView.topAnchor.constraint(equalTo: backgraundFastSaleImageView.topAnchor, constant: 110),
             categorySaleImageView.leadingAnchor.constraint(equalTo: backgraundFastSaleImageView.leadingAnchor, constant: 10),
-            categorySaleImageView.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -114),
-            
+            categoryFastSaleLabel.bottomAnchor.constraint(equalTo: backgraundFastSaleImageView.bottomAnchor, constant: -83),
             categoryFastSaleLabel.centerXAnchor.constraint(equalTo: categorySaleImageView.centerXAnchor),
             categoryFastSaleLabel.centerYAnchor.constraint(equalTo: categorySaleImageView.centerYAnchor),
 
-            nameFastSaleLabel.topAnchor.constraint(equalTo: categorySaleImageView.bottomAnchor, constant: 10),
             nameFastSaleLabel.leadingAnchor.constraint(equalTo: backgraundFastSaleImageView.leadingAnchor, constant: 10),
-            nameFastSaleLabel.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -80),
-            nameFastSaleLabel.heightAnchor.constraint(equalToConstant: 30),
+            nameFastSaleLabel.bottomAnchor.constraint(equalTo: backgraundFastSaleImageView.bottomAnchor, constant: -42),
+            nameFastSaleLabel.widthAnchor.constraint(equalToConstant: 82),
 
-            priceFastSaleLabel.topAnchor.constraint(equalTo: nameFastSaleLabel.bottomAnchor, constant: 20),
             priceFastSaleLabel.leadingAnchor.constraint(equalTo: backgraundFastSaleImageView.leadingAnchor, constant: 10),
+            priceFastSaleLabel.bottomAnchor.constraint(equalTo: backgraundFastSaleImageView.bottomAnchor, constant: -17),
             
             addButton.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -5),
             addButton.bottomAnchor.constraint(equalTo: backgraundFastSaleImageView.bottomAnchor, constant: -5),
@@ -80,11 +77,11 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
             likeButton.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -45),
             likeButton.bottomAnchor.constraint(equalTo: backgraundFastSaleImageView.bottomAnchor, constant: -5),
 
-            profileSaleImageView.topAnchor.constraint(equalTo: backgraundFastSaleImageView.topAnchor, constant: 5),
-            profileSaleImageView.leadingAnchor.constraint(equalTo: backgraundFastSaleImageView.leadingAnchor, constant: 5),
+            profileSaleImageView.topAnchor.constraint(equalTo: backgraundFastSaleImageView.topAnchor, constant: 7),
+            profileSaleImageView.leadingAnchor.constraint(equalTo: backgraundFastSaleImageView.leadingAnchor, constant: 7),
 
-            salesImageView.topAnchor.constraint(equalTo: backgraundFastSaleImageView.topAnchor, constant: 5),
-            salesImageView.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -5),
+            salesImageView.topAnchor.constraint(equalTo: backgraundFastSaleImageView.topAnchor, constant: 7),
+            salesImageView.trailingAnchor.constraint(equalTo: backgraundFastSaleImageView.trailingAnchor, constant: -7),
 
             labelSales.centerXAnchor.constraint(equalTo: salesImageView.centerXAnchor),
             labelSales.centerYAnchor.constraint(equalTo: salesImageView.centerYAnchor)

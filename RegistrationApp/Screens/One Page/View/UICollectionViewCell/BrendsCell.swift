@@ -41,7 +41,7 @@ final class BrendsCollectionViewCell: UICollectionViewCell {
     }
    private func setupView() {
        addSubview(backgraundBrandsImageView)
-       backgraundBrandsImageView.backgroundColor = .gray
+       backgraundBrandsImageView.backgroundColor = .placeholderText
        backgraundBrandsImageView.addSubview(categoryBrandImageView)
        categoryBrandImageView.addSubview(categoryBrandsLabel)
        backgraundBrandsImageView.addSubview(nameBrandsLabel)
@@ -59,20 +59,17 @@ final class BrendsCollectionViewCell: UICollectionViewCell {
             backgraundBrandsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             backgraundBrandsImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
-            categoryBrandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 110),
             categoryBrandImageView.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
-            categoryBrandImageView.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -114),
-            
+            categoryBrandImageView.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -83),
             categoryBrandsLabel.centerXAnchor.constraint(equalTo: categoryBrandImageView.centerXAnchor),
             categoryBrandsLabel.centerYAnchor.constraint(equalTo: categoryBrandImageView.centerYAnchor),
-
-            nameBrandsLabel.topAnchor.constraint(equalTo: categoryBrandImageView.bottomAnchor, constant: 10),
+            
             nameBrandsLabel.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
-            nameBrandsLabel.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -80),
-            nameBrandsLabel.heightAnchor.constraint(equalToConstant: 30),
+            nameBrandsLabel.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -42),
+            nameBrandsLabel.widthAnchor.constraint(equalToConstant: 82),
 
-            priceBrandsLabel.topAnchor.constraint(equalTo: nameBrandsLabel.bottomAnchor, constant: 20),
             priceBrandsLabel.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
+            priceBrandsLabel.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -17),
             
             addBrandsButton.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -5),
             addBrandsButton.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -5),
@@ -80,11 +77,11 @@ final class BrendsCollectionViewCell: UICollectionViewCell {
             likeBrandsButton.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -45),
             likeBrandsButton.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -5),
 
-            profileBrandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 5),
-            profileBrandImageView.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 5),
+            profileBrandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 7),
+            profileBrandImageView.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 7),
 
-            brandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 5),
-            brandImageView.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -5),
+            brandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 7),
+            brandImageView.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -7),
 
             labelBrands.centerXAnchor.constraint(equalTo: brandImageView.centerXAnchor),
             labelBrands.centerYAnchor.constraint(equalTo: brandImageView.centerYAnchor)

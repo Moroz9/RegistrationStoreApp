@@ -21,7 +21,7 @@ extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case .category(let items):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Resources.CollectionViewCell.categorypeCollectionViewCell,
                   for: indexPath) as? CategorypeCollectionViewCell else { return UICollectionViewCell()}
-            cell.configureCell(categoryName: items[indexPath.row].image, imageName: items[indexPath.row].image)
+            cell.configureCell(categoryName: items[indexPath.row].title, imageName: items[indexPath.row].image)
             return cell
         case .latest(let items):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Resources.CollectionViewCell.latestCollectionViewCell,

@@ -19,6 +19,8 @@ enum Resources {
         static var backgroundButton = UIColor(hexString: "#4E55D7")
         static var backgroundButtonText = UIColor(hexString: "#EAEAEA")
         static var backgroundLabel = UIColor(hexString: "#161826")
+        static var colotTextBlack = UIColor(hexString: "#000000")
+        static var colotCustomTextBlue = UIColor(hexString: "#4E55D7")
         static var textColorStatusLabelRed = UIColor.red
         static var textColorStatusLabelGreen = UIColor.green
     }
@@ -38,6 +40,9 @@ enum Resources {
         static var category = String("Category")
         static var viewAll = String("View all")
         static var searchPlaceholder = String("Whats are you looking for?")
+        static var textProfile = String("Profile")
+        static var tradeBy = String("Trade by")
+        static var textBata = String(" bata")
         
         // MARK: - Image
         static var imageLogIn = String( "ImageLogIn")

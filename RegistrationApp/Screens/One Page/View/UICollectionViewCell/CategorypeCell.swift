@@ -8,6 +8,15 @@
 import UIKit
 
 final class CategorypeCollectionViewCell: UICollectionViewCell {
+    
+    private let categoryBackgroundView: UIImageView = {
+        let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = UIImage(named: Resources.TextNamed.categoryBurger)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            return imageView
+        }()
+    
     private let categoryImageView: UIImageView = {
     let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -18,7 +27,7 @@ final class CategorypeCollectionViewCell: UICollectionViewCell {
     private let categoryLabel: UILabel = {
     let label = UILabel()
     label.text = Resources.TextNamed.category
-    label.textAlignment = .left
+    label.textAlignment = .center
     label.font = UIFont.systemFont(ofSize: 10)
     label.textColor = .gray
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,20 +47,27 @@ final class CategorypeCollectionViewCell: UICollectionViewCell {
         categoryImageView.layer.cornerRadius = categoryImageView.frame.height / 2
     }
     func setupView() {
-        addSubview(categoryImageView)
-        categoryImageView.backgroundColor = .gray
-        addSubview(categoryLabel)
+        addSubview(categoryBackgroundView)
+        categoryBackgroundView.addSubview(categoryImageView)
+        categoryBackgroundView.addSubview(categoryLabel)
+        categoryBackgroundView.backgroundColor = .placeholderText
     }
     func setConstraints() {
         NSLayoutConstraint.activate([
-            categoryImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            categoryImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            categoryImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-           
-            categoryLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 10),
-            categoryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
-            categoryLabel.heightAnchor.constraint(equalToConstant: 20),
-            categoryLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            categoryBackgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            categoryBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            categoryBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            categoryBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            
+            categoryImageView.topAnchor.constraint(equalTo: categoryBackgroundView.topAnchor, constant: 0),
+            categoryImageView.leadingAnchor.constraint(equalTo: categoryBackgroundView.leadingAnchor, constant: 5),
+            categoryImageView.trailingAnchor.constraint(equalTo: categoryBackgroundView.trailingAnchor, constant: -5),
+            categoryImageView.bottomAnchor.constraint(equalTo: categoryBackgroundView.bottomAnchor, constant: -20),
+            
+            categoryLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 0),
+            categoryLabel.bottomAnchor.constraint(equalTo: categoryBackgroundView.bottomAnchor, constant: 0),
+            categoryLabel.centerXAnchor.constraint(equalTo: categoryBackgroundView.centerXAnchor)
+            
         ])
     }
 }

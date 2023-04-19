@@ -17,34 +17,34 @@ extension OnePageVC {
             switch section {
             case .category:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(66), heightDimension: .absolute(75)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.155), heightDimension: .fractionalHeight(0.11)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuous
+                section.orthogonalScrollingBehavior = .groupPaging
                 section.interGroupSpacing = 5
                 section.boundarySupplementaryItems = []
-                section.contentInsets = .init(top: 0, leading: 5, bottom: -20, trailing: 5)
+                section.contentInsets = .init(top: 5, leading: 2, bottom: 10, trailing: 4)
                 section.supplementariesFollowContentInsets = false
                 return section
                 
             case .latest:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.68)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(0.36)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(0.3)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPaging
                 section.interGroupSpacing = 10
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                section.contentInsets = .init(top: 10, leading: 10, bottom: -80, trailing: 10)
+                section.contentInsets = .init(top: 0, leading: 10, bottom: -60, trailing: 10)
                 section.supplementariesFollowContentInsets = false
                 return section
                 
             case .flashSale:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.8)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.47), heightDimension: .fractionalHeight(0.47)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.47), heightDimension: .fractionalHeight(0.42)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPaging
                 section.interGroupSpacing = 7
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                section.contentInsets = .init(top: 10, leading: 10, bottom: -70, trailing: 10)
+                section.contentInsets = .init(top: 0, leading: 10, bottom: -40, trailing: 10)
                 section.supplementariesFollowContentInsets = false
                 return section
             case .brands:
@@ -54,7 +54,7 @@ extension OnePageVC {
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 7
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                section.contentInsets = .init(top: 10, leading: 10, bottom: -70, trailing: 10)
+                section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
                 section.supplementariesFollowContentInsets = false
                 return section
             }
@@ -62,7 +62,7 @@ extension OnePageVC {
     }
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                heightDimension: .estimated(20)),
+                                heightDimension: .estimated(30)),
               elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }

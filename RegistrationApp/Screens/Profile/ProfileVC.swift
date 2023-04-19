@@ -42,7 +42,7 @@ final class ProfileVC: UIViewController {
     private func setupViews() {
         view.addSubview(contentViewBack)
         view.addSubview(tableView)
-        let castomTitleView = createCustomTitleView(contactName: "Profile", contactDescription: "", contactImage: "")
+        let castomTitleView = createCustomTitleView(contactName: Resources.TextNamed.textProfile )
         navigationItem.titleView = castomTitleView
         
     tableView.register(ProfileChangePhotoViewCell.self, forCellReuseIdentifier: CellIdentifier.idProfileChangePhotoCell)
@@ -176,10 +176,10 @@ extension ProfileVC {
             contentViewBack.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             contentViewBack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
 }

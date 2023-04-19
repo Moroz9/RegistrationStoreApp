@@ -13,8 +13,8 @@ final class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTabBarUI()
         setupTabBar()
+        setupTabBarUI()
         addCustomTabBarView()
     }
     override func viewDidLayoutSubviews() {
@@ -22,8 +22,8 @@ final class MainTabBarController: UITabBarController {
             setupCustomTabBarFrame()
         }
     func setupTabBar() {
-    let onePageViewController = createNavController(vController: OnePageVC(), itemName: "", itemImage: "home")
-    let profileViewController = createNavController(vController: ProfileVC(), itemName: "", itemImage: "profile")
+    let onePageViewController = createNavController(VController: OnePageVC(), itemName: "", itemImage: "home")
+    let profileViewController = createNavController(VController: ProfileVC(), itemName: "", itemImage: "profile")
 //    let massegeViewController = createNavController(vController: OneViewController(), itemName: "", itemImage: "love")
 //    let likeViewController = createNavController(vController: TwoViewController(), itemName: "", itemImage: "massage")
 //    let basketViewController = createNavController(vController: ThirdViewController(),itemName: "", itemImage: "SaveProduct")
@@ -32,16 +32,18 @@ final class MainTabBarController: UITabBarController {
 //                           basketViewController, likeViewController, profileViewController]
         viewControllers = [onePageViewController, profileViewController]
     }
-   private func createNavController(vController: UIViewController,
+   private func createNavController(VController: UIViewController,
                                     itemName: String, itemImage: String) -> UINavigationController {
-        let item = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
-        let ncvController = UINavigationController(rootViewController: vController)
-        ncvController.tabBarItem = item
+       let item = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
        
-        return ncvController
+       item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -26, right: 0)
+        let navController = UINavigationController(rootViewController: VController)
+        navController.tabBarItem = item
+       
+        return navController
     }
     private func setupCustomTabBarFrame() {
-            let height = self.view.safeAreaInsets.bottom + 63
+            let height = self.view.safeAreaInsets.bottom + 35
             
             var tabFrame = self.tabBar.frame
             tabFrame.size.height = height

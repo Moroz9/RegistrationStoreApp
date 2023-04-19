@@ -81,34 +81,34 @@ extension LogInViewVC: LogInViewDelegate {
     }
     
     func logInButtonAuthTapped() {
-        let emailNameText = myLogView.mailTextFildLogIn.text ?? ""
-        let passwordText = myLogView.passwordTextFildLogIn.text ?? ""
-        let checkEmail = chekEmail(mail: emailNameText)
-        let checkPassword = chekPassword(password: passwordText)
-        
-        if passwordText.isValidType(validType: passwordValidType)
-            && emailNameText.isValidType(validType: emailValidType) == true {
-            
-            if checkEmail == true {
-                if checkPassword == true {
+//        let emailNameText = myLogView.mailTextFildLogIn.text ?? ""
+//        let passwordText = myLogView.passwordTextFildLogIn.text ?? ""
+//        let checkEmail = chekEmail(mail: emailNameText)
+//        let checkPassword = chekPassword(password: passwordText)
+//
+//        if passwordText.isValidType(validType: passwordValidType)
+//            && emailNameText.isValidType(validType: emailValidType) == true {
+//
+//            if checkEmail == true {
+//                if checkPassword == true {
                     let controller = MainTabBarController()
                     navigationController?.navigationBar.isHidden = true
                     navigationController?.pushViewController(controller, animated: true)
-                } else {
-                    myLogView.statusLabelLogin.alpha = 1
-                    myLogView.statusLabelLogin.textColor = .red
-                    myLogView.statusLabelLogin.text = "Please cheacked password"
-                }
-            } else {
-                myLogView.statusLabelLogin.alpha = 1
-                myLogView.statusLabelLogin.textColor = .red
-                myLogView.statusLabelLogin.text = "Please cheacked email"
-            }
-        } else {
-            myLogView.statusLabelLogin.alpha = 1
-            myLogView.statusLabelLogin.textColor = .red
-            myLogView.statusLabelLogin.text = "Fill in all the filds"
-        }
+//                } else {
+//                    myLogView.statusLabelLogin.alpha = 1
+//                    myLogView.statusLabelLogin.textColor = .red
+//                    myLogView.statusLabelLogin.text = "Please cheacked password"
+//                }
+//            } else {
+//                myLogView.statusLabelLogin.alpha = 1
+//                myLogView.statusLabelLogin.textColor = .red
+//                myLogView.statusLabelLogin.text = "Please cheacked email"
+//            }
+//        } else {
+//            myLogView.statusLabelLogin.alpha = 1
+//            myLogView.statusLabelLogin.textColor = .red
+//            myLogView.statusLabelLogin.text = "Fill in all the filds"
+//        }
     }
 }
 
