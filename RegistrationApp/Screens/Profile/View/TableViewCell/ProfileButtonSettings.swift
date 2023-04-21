@@ -14,7 +14,7 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
                 font: UIFont.systemFont(ofSize: 20), alignment: .left)
     private var secondaryText = UILabel(text: "", textColor: .black,
                 font: UIFont.systemFont(ofSize: 25), alignment: .center)
-    private var profileArroy = UIImageView(imageName: "Arrow")
+    private var profileArroy = UIImageView(imageName: Resources.TextNamed.arrow)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,7 +38,7 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
             leftIconName.widthAnchor.constraint(equalToConstant: 40),
             leftIconName.topAnchor.constraint(equalTo: topAnchor, constant: 11.5),
             leftIconName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11.5),
-            leftIconName.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            leftIconName.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             primaryText.leadingAnchor.constraint(equalTo: leftIconName.trailingAnchor, constant: 10),
             primaryText.trailingAnchor.constraint(equalTo: profileArroy.trailingAnchor, constant: -100),

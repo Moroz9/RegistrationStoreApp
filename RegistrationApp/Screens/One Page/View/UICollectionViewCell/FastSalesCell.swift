@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FastSaleCollectionViewCell: UICollectionViewCell {
+final class FlashSalesCollectionViewCell: UICollectionViewCell {
     private let backgraundFastSaleImageView: UIImageView = {
     let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -27,6 +27,7 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
                                      font: UIFont.systemFont(ofSize: 8), alignment: .center)
     private let addButton = UIButton(imageName: "addProductSale")
     private let likeButton = UIButton(imageName: "likeproduct")
+    var categoryFlashSales = [FlashSaleElement]()
     override init( frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -51,6 +52,18 @@ final class FastSaleCollectionViewCell: UICollectionViewCell {
        backgraundFastSaleImageView.addSubview(profileSaleImageView)
        backgraundFastSaleImageView.addSubview(salesImageView)
        salesImageView.addSubview(labelSales)
+    }
+    private func fetchFastSales() {
+        let urlString = "https://run.mocky.io/v3/a9ceeb6e-416d-4352-bde6-2203416576ac"
+        
+        NetworkFastSales.shared.fetchFlashModel(urlString: urlString) { [weak self] flashSalesModel, error in
+            if error == nil {
+                guard let flashModel = flashSalesModel else { return }
+                self?.categoryFlashSales = flashModel.flashSale
+            } else {
+                print("error")
+           }
+        }
     }
    private func setConstraints() {
         NSLayoutConstraint.activate([

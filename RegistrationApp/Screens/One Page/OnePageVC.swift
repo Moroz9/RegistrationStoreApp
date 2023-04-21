@@ -47,7 +47,7 @@ final class OnePageVC: UIViewController {
                                 forCellWithReuseIdentifier: Resources.CollectionViewCell.categorypeCollectionViewCell)
         collectionView.register(LatestCollectionViewCell.self,
                                 forCellWithReuseIdentifier: Resources.CollectionViewCell.latestCollectionViewCell)
-        collectionView.register(FastSaleCollectionViewCell.self,
+        collectionView.register(FlashSalesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: Resources.CollectionViewCell.fastSaleCollectionViewCell)
         collectionView.register(BrendsCollectionViewCell.self,
                                 forCellWithReuseIdentifier: Resources.CollectionViewCell.brendsCollectionViewCell)

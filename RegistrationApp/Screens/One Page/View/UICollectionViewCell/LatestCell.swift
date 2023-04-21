@@ -22,9 +22,11 @@ final class LatestCollectionViewCell: UICollectionViewCell {
     private let priceLabel = UILabel(text: "price", textColor: .white,
                                     font: UIFont.systemFont(ofSize: 10), alignment: .left)
     private let upLoadButton = UIButton(imageName: "addProduct")
+    var categoryLatest = [LatestElement]()
     override init( frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        fetchCategoryLatest()
         setConstraints()
     }
     required init?(coder: NSCoder) {
@@ -41,8 +43,63 @@ final class LatestCollectionViewCell: UICollectionViewCell {
         backgraungImageView.addSubview(nameLabel)
         backgraungImageView.addSubview(priceLabel)
         backgraungImageView.addSubview(upLoadButton)
-        
         backgraungImageView.backgroundColor = .placeholderText
+    }
+    func setCellWithValuesOf(_ latest: LatestElement) {
+        updateUI(name: latest.name, category: latest.category, price: latest.price, image_url: latest.image_url)
+    }
+    
+    private func fetchCategoryLatest() {
+        let urlString = "https://run.mocky.io/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7"
+        
+        NetworkDataFetch.shared.fetchCategoryModel(urlString: urlString) { [weak self] latestModel, error in
+            if error == nil {
+                guard let categoryModel = latestModel else { return }
+                self?.categoryLatest = categoryModel.latest
+            } else {
+                print("error")
+           }
+        }
+    }
+    //   swiftlint:disable all
+    private func updateUI(name: String, category: String, price: Double, image_url: String) {
+        
+        self.nameLabel.text = name
+        self.categorytLabel.text = category
+        self.priceLabel.text = String(price)
+        
+        guard let posterImageURL = URL(string: image_url) else {
+            self.backgraungImageView.image = UIImage(named: "noImageAvailable")
+            return
+        }
+        
+        // Before we download the image we clear out the old one
+        self.backgraungImageView.image = nil
+        
+        getImageDataFrom(url: posterImageURL)
+        
+    }
+    //   swiftlint:disable all
+    private func getImageDataFrom(url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // Handle Error
+            if let error = error {
+                print("DataTask error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                // Handle Empty Data
+                print("Empty Data")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data) {
+                    self.backgraungImageView.image = image
+                }
+            }
+        }.resume()
     }
    private func setConstraints() {
         NSLayoutConstraint.activate([

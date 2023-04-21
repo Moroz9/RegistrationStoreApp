@@ -102,15 +102,13 @@ extension AuthenticationView {
             scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
-            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.heightAnchor.constraint(equalTo: heightAnchor),
             contentView.widthAnchor.constraint(equalTo: widthAnchor),
             
-            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44),
+            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             firstNameTextFild.heightAnchor.constraint(equalToConstant: 29),
             lastNameTextFild.heightAnchor.constraint(equalToConstant: 29),

@@ -12,7 +12,7 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
      var photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 30
+        imageView.layer.cornerRadius = 40
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -35,19 +35,19 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
         addSubview(labelChangeNameText)
         addSubview(labelNameText)
         NSLayoutConstraint.activate([
-            photoImageView.heightAnchor.constraint(equalToConstant: 60),
-            photoImageView.widthAnchor.constraint(equalToConstant: 60),
+            photoImageView.heightAnchor.constraint(equalToConstant: 80),
+            photoImageView.widthAnchor.constraint(equalToConstant: 80),
             photoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            photoImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            photoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
        
             labelChangeNameText.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 5),
-            labelChangeNameText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            labelChangeNameText.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            labelNameText.topAnchor.constraint(equalTo: labelChangeNameText.bottomAnchor, constant: 20),
-            labelNameText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+            labelNameText.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 35),
+            labelNameText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            labelNameText.heightAnchor.constraint(equalToConstant: 30),
             labelNameText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            labelNameText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 112),
-            labelNameText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -112)
+            labelNameText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 112)
         ])
     }
     func setData(_ user: PersonsModel ) {
@@ -57,6 +57,6 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
         
         photoImageView.image = image ?? UIImage(named: "ImagePhoto")
         labelChangeNameText.text = user.changeName
-        labelNameText.text = (storage.string(forkey: .firstName) ?? " Dosn't found Name") + " " + ( storage.string(forkey: .lastName) ?? " Dosn't found Name")
+        labelNameText.text = (storage.string(forkey: .firstName) ?? " Didn't found Name") + " " + ( storage.string(forkey: .lastName) ?? " Didn't found Last Name")
     }
 }

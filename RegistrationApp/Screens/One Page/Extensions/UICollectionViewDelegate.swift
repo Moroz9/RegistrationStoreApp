@@ -30,7 +30,7 @@ extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         case .flashSale(let items):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Resources.CollectionViewCell.fastSaleCollectionViewCell,
-                 for: indexPath) as? FastSaleCollectionViewCell else { return UICollectionViewCell()}
+                 for: indexPath) as? FlashSalesCollectionViewCell else { return UICollectionViewCell()}
             cell.configureCe11(categoryName: items[indexPath.row].title, imageName: items[indexPath.row].image)
             return cell
         case .brands(let items):

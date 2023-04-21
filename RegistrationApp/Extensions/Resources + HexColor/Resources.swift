@@ -43,6 +43,9 @@ enum Resources {
         static var textProfile = String("Profile")
         static var tradeBy = String("Trade by")
         static var textBata = String(" bata")
+        static var upload = String("Upload item")
+        static var imageButton = String("ImageButton")
+        static var arrow = String("Arrow")
         
         // MARK: - Image
         static var imageLogIn = String( "ImageLogIn")
@@ -65,7 +68,7 @@ enum Resources {
     enum CollectionViewCell {
         static var categorypeCollectionViewCell = String("CategorypeCollectionViewCell")
         static var latestCollectionViewCell = String("LatestCollectionViewCell")
-        static var fastSaleCollectionViewCell = String("FastSaleCollectionViewCell")
+        static var fastSaleCollectionViewCell = String("FlashSalesCollectionViewCell")
         static var brendsCollectionViewCell = String("BrendsCollectionViewCell")
         static var collectionViewHeaderReusableView = String("CollectionViewHeaderReusableView")
     }

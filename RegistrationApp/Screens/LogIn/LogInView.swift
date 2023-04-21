@@ -87,8 +87,6 @@ extension LogInView {
             scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
-            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.heightAnchor.constraint(equalTo: heightAnchor),
             contentView.widthAnchor.constraint(equalTo: widthAnchor),
             

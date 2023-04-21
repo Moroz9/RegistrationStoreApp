@@ -16,9 +16,9 @@ enum ListSection {
     var items: [ListItem] {
         switch self {
         case .category(let items),
-                .latest(let items),
-                .flashSale(let items),
-                .brands(let items):
+             .latest(let items),
+             .flashSale(let items),
+             .brands(let items):
             return items
         }
     }
@@ -37,5 +37,4 @@ enum ListSection {
             return "Brands"
         }
     }
-    
 }

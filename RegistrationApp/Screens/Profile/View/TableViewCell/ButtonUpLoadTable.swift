@@ -20,11 +20,11 @@ final class ButtonUpLoadTableViewCell: UITableViewCell {
     private let upLoadButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Resources.Color.backgroundButton
-        button.setTitle("Upload item", for: .normal)
+        button.setTitle(Resources.TextNamed.upload, for: .normal)
         button.setTitleColor(Resources.Color.backgroundButtonText, for: .normal)
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .montserrat30()
-        button.setImage(UIImage(named: "ImageButton"), for: .normal)
+        button.setImage(UIImage(named: Resources.TextNamed.imageButton), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -33,11 +33,11 @@ final class ButtonUpLoadTableViewCell: UITableViewCell {
         addSubview(upLoadButton)
         NSLayoutConstraint.activate([
             upLoadButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
-            upLoadButton.heightAnchor.constraint(equalToConstant: 40),
+            upLoadButton.heightAnchor.constraint(equalToConstant: 46),
             upLoadButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             upLoadButton.widthAnchor.constraint(equalToConstant: 290),
             upLoadButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            upLoadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3)
+            upLoadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
         ])
     }
 }
