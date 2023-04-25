@@ -10,11 +10,11 @@ import UIKit
 final class ProfileButtonSettingsViewCell: UITableViewCell {
     
     private var leftIconName = UIImageView(imageName: "")
-    private var primaryText = UILabel(text: "", textColor: .black,
+    private var primaryText = UILabel(textColor: .black,
                 font: UIFont.systemFont(ofSize: 20), alignment: .left)
-    private var secondaryText = UILabel(text: "", textColor: .black,
+    private var secondaryText = UILabel(textColor: .black,
                 font: UIFont.systemFont(ofSize: 25), alignment: .center)
-    private var profileArroy = UIImageView(imageName: Resources.TextNamed.arrow)
+    private var profileArroy = UIImageView(imageName: Text.arrow)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,15 +22,18 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
         setupView()
         setLogInConstrains()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func setupView() {
         addSubview(leftIconName)
         addSubview(primaryText)
         addSubview(profileArroy)
         addSubview(secondaryText)
     }
+    
     private func setLogInConstrains() {
         NSLayoutConstraint.activate([
             leftIconName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -55,6 +58,7 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
             secondaryText.widthAnchor.constraint(equalToConstant: 45)
         ])
     }
+    
     func setData(_ user: ProfileButtonSettingsModel ) {
         leftIconName.image = UIImage(named: user.leftIconName)
         primaryText.text = user.primaryText

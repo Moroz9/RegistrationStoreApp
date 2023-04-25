@@ -8,9 +8,11 @@
 import UIKit
 
 extension UIViewController {
+    
     func createCustomNavigationBarPageOne() {
-        navigationController?.navigationBar.barTintColor = Resources.Color.backgroundView
+        navigationController?.navigationBar.barTintColor = Color.backgroundView
     }
+    
     func createCustomTitleViewPageOne(contactName: NSAttributedString, contactDescription: String, contactImage: String)
     -> UIView {
         let view = UIView()
@@ -36,6 +38,7 @@ extension UIViewController {
         
         return view
     }
+    
     func createCustomButtonPageOne(imageName: String, selector: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .system)
         button.setImage(
@@ -52,17 +55,16 @@ extension UIViewController {
     }
     
     func updateAttributesText() -> NSAttributedString {
-        let stingOne = Resources.TextNamed.tradeBy
+        let stingOne = Text.tradeBy
         let attributesOne = [
-            NSAttributedString.Key.foregroundColor: Resources.Color.colotTextBlack
+            NSAttributedString.Key.foregroundColor: Color.colotTextBlack
         ]
-        let stingTwo = Resources.TextNamed.textBata
+        let stingTwo = Text.textBata
         let attributesTwo = [
-            NSAttributedString.Key.foregroundColor: Resources.Color.colotCustomTextBlue
+            NSAttributedString.Key.foregroundColor: Color.colotCustomTextBlue
         ]
         let attributesStingOne = NSMutableAttributedString(string: stingOne, attributes: attributesOne)
         let attributesStingTwo = NSAttributedString(string: stingTwo, attributes: attributesTwo)
-        
         attributesStingOne.append(attributesStingTwo)
         
         return attributesStingOne

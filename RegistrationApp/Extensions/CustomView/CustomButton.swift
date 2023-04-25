@@ -8,6 +8,7 @@
 import UIKit
 
 final class CustomButton: UIButton {
+    
     public var isValid: Bool  = false {
         didSet {
             if self.isValid {
@@ -17,9 +18,11 @@ final class CustomButton: UIButton {
             }
         }
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
     init(title: String, colorTitle: UIColor, backgroundColorButton: UIColor, configurationImage: String, imageRight: CGFloat, imageLeft: CGFloat) {
         super.init(frame: .zero)
         backgroundColor = backgroundColorButton
@@ -33,13 +36,16 @@ final class CustomButton: UIButton {
         alpha = 1
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
     private func setValidSetting() {
         isEnabled = true
         alpha = 1
     }
+    
     private func setNotValidSetting() {
         isEnabled = false
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

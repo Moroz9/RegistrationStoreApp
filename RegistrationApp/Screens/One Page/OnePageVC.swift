@@ -9,13 +9,15 @@ import UIKit
 
 final class OnePageVC: UIViewController {
     // MARK: - Let \ Var
+    
     private let searhTextFild = SearchTextFild()
     private let backgroundImageView: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = Resources.Color.backgroundView
+        imageView.backgroundColor = Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -23,37 +25,110 @@ final class OnePageVC: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
+    
+    private var category: ListSection = {
+        .category([.init(name: "Phones", image: "phone"),
+                   .init(name: "Headphones", image: "headphones"),
+                   .init(name: "Games", image: "game"),
+                   .init(name: "Cars", image: "car"),
+                   .init(name: "Furniture", image: "furinute"),
+                   .init(name: "Kids", image: "kids")])
+    }()
+    private var latestItems: [LatestElement] = []
+    private var flashSales: [FlashSaleElement] = []
+    private var brands: [FlashSaleElement] = []
+    var pageData: [ListSection] {
+        [category, .latest(latestItems), .flashSale(flashSales)]
+    }
     // MARK: - Lifecycle funcs
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         createCustomNavigationBarPageOne()
         setConstrains()
         setDelegate()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        fetchLatestCategory()
+        fetchFlashSales()
+        fetchBrands()
+        
+        func fetchLatestCategory() {
+            let url = "https://run.mocky.io/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7"
+            NetworkManager.shared.fetchLatestCategoryModel(urlString: url) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let latestItems):
+                    DispatchQueue.main.async {
+                        self.latestItems = latestItems.latest
+                        self.collectionView.reloadData()
+                    }
+
+                case .failure(let failure):
+                    fatalError(failure.localizedDescription)
+                }
+            }
+        }
+        
+        func fetchFlashSales() {
+            let url = "https://run.mocky.io/v3/a9ceeb6e-416d-4352-bde6-2203416576ac"
+            NetworkManager.shared.fetchFlashSalesModel(urlString: url) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let flashSales):
+                    DispatchQueue.main.async {
+                        self.flashSales = flashSales.flashSale
+                        self.collectionView.reloadData()
+                    }
+
+                case .failure(let failure):
+                    fatalError(failure.localizedDescription)
+                }
+            }
+        }
+
+        func fetchBrands() {
+            let url = "https://run.mocky.io/v3/a9ceeb6e-416d-4352-bde6-2203416576ac"
+            NetworkManager.shared.fetchBrandsModel(urlString: url) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let brands):
+                    DispatchQueue.main.async {
+                        self.brands = brands.flashSale
+                        self.collectionView.reloadData()
+                    }
+
+                case .failure(let failure):
+                    fatalError(failure.localizedDescription)
+                }
+            }
+        }
     }
     // MARK: - Flow funcs
+    
     private func setupViews() {
         view.addSubview(backgroundImageView)
         backgroundImageView.addSubview(searhTextFild)
         backgroundImageView.addSubview(collectionView)
         
-        let clipPathGroup = createCustomButtonPageOne(imageName: Resources.TextNamed.clippathgroup, selector: #selector (barButtonTapped))
-        let castomTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: Resources.TextNamed.location, contactImage: Resources.TextNamed.imagePhoto)
+        let clipPathGroup = createCustomButtonPageOne(imageName: "Image.clippathgroup", selector: #selector (barButtonTapped))
+        let castomTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: "location", contactImage: "Image.imagePhoto")
         navigationItem.leftBarButtonItem = clipPathGroup
         navigationItem.titleView = castomTitleView
         
         collectionView.register(CategorypeCollectionViewCell.self,
-                                forCellWithReuseIdentifier: Resources.CollectionViewCell.categorypeCollectionViewCell)
+                                forCellWithReuseIdentifier: CollectionViewCell.categorypeCollectionViewCell)
         collectionView.register(LatestCollectionViewCell.self,
-                                forCellWithReuseIdentifier: Resources.CollectionViewCell.latestCollectionViewCell)
+                                forCellWithReuseIdentifier: CollectionViewCell.latestCollectionViewCell)
         collectionView.register(FlashSalesCollectionViewCell.self,
-                                forCellWithReuseIdentifier: Resources.CollectionViewCell.fastSaleCollectionViewCell)
+                                forCellWithReuseIdentifier: CollectionViewCell.fastSaleCollectionViewCell)
         collectionView.register(BrendsCollectionViewCell.self,
-                                forCellWithReuseIdentifier: Resources.CollectionViewCell.brendsCollectionViewCell)
+                                forCellWithReuseIdentifier: CollectionViewCell.brendsCollectionViewCell)
         collectionView.register(CollectionViewHeaderReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: Resources.CollectionViewCell.collectionViewHeaderReusableView)
+                                withReuseIdentifier: CollectionViewCell.collectionViewHeaderReusableView)
         
         collectionView.collectionViewLayout = createLayout()
     }
@@ -85,5 +160,46 @@ extension OnePageVC {
             collectionView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 0)
         ])
+    }
+}
+extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return pageData.count
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return pageData[section].items.count
+    }
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch pageData[indexPath.section] {
+        case .category(let categories):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.categorypeCollectionViewCell,
+                  for: indexPath) as? CategorypeCollectionViewCell else { return UICollectionViewCell()}
+            cell.configureCell(categoryName: categories[indexPath.row].name, imageName: categories[indexPath.row].image)
+            return cell
+        case .latest(let latest):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.latestCollectionViewCell,
+                for: indexPath) as? LatestCollectionViewCell else { return UICollectionViewCell()}
+            cell.configureCell(category: latest[indexPath.row].category, name: latest[indexPath.row].name, price: latest[indexPath.row].price, imageUrl: latest[indexPath.row].image_url)
+            return cell
+        case .flashSale(let flashSale):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.fastSaleCollectionViewCell,
+                 for: indexPath) as? FlashSalesCollectionViewCell else { return UICollectionViewCell()}
+            cell.configureCell(category: flashSale[indexPath.row].category, name: flashSale[indexPath.row].name,
+                               price: flashSale[indexPath.row].price, discount: flashSale[indexPath.row].discount, imageUrl: flashSale[indexPath.row].imageUrl)
+            return cell
+        }
+    }
+func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                           withReuseIdentifier: CollectionViewCell.collectionViewHeaderReusableView,
+                for: indexPath) as? CollectionViewHeaderReusableView else { return UICollectionReusableView()}
+            header.configureHeader(categoryName: pageData[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
     }
 }

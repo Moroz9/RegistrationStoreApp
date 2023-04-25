@@ -8,9 +8,11 @@
 import UIKit
 
 extension UIViewController {
+    
     func createCustomNavigationBar() {
         navigationController?.navigationBar.barTintColor = .clear
     }
+    
     func createCustomTitleView(contactName: String)
     -> UIView {
         let view = UIView()
@@ -28,6 +30,7 @@ extension UIViewController {
         
         return view
     }
+    
     func createCustomButton (imageName: String, selector: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .system)
         button.setImage(

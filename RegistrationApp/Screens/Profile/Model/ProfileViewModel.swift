@@ -28,6 +28,7 @@ struct ProfileButtonSettingsModel {
     let secondaryText: String?
     let withArrow: Bool = false
 }
+
 extension ProfileButtonSettingsModel {
     static var exampleList: [ProfileButtonSettingsModel] {
         let tradeStore = ProfileButtonSettingsModel(leftIconName: "Folder",
@@ -55,6 +56,7 @@ struct PersonsModel {
     var changeName: String
     var image: UIImage
 }
+
 //   swiftlint:disable all
 extension PersonsModel {
     
@@ -63,6 +65,7 @@ extension PersonsModel {
         return [person]
     }
 }
+
 //   swiftlint:disable all
 // MARK: - struct UpLoadItemButtonModel
 
@@ -70,6 +73,7 @@ struct UpLoadItemButtonModel {
     var name: String
     var image: String
 }
+
 extension UpLoadItemButtonModel {
     static var exampleList: [UpLoadItemButtonModel] {
         let char01 = UpLoadItemButtonModel(name: "Upload", image: "image-11")

@@ -43,29 +43,23 @@ final class AuthenticationVC: AAuthenticationViewController<AuthenticationView> 
     }
     
     private func setTextfield(textField: UITextField, label: UILabel, validType: String.ValidTypes, validMessage: String, wrongMessage: String, string: String, range: NSRange) {
-        let text = (textField.text ?? "") + string
-        let result: String
         
-        if range.length == 1 {
-            let end = text.index(text.startIndex, offsetBy: text.count - 1)
-            result = String(text[text.startIndex..<end])
-        } else {
-            result = text
-        }
-        textField.text = result
-        
-        if textField == myView.mailTextFild {
-            verificationModel.getFilterMail(text: result)
-            myView.collectionView.reloadData()
-        }
-        
-        if result.isValidType(validType: validType) {
-            myView.statusLabel.text = validMessage
-            myView.statusLabel.textColor = .green
-        } else {
-            myView.statusLabel.alpha = 1
-            myView.statusLabel.textColor = .red
-            myView.statusLabel.text = wrongMessage
+        if let text = textField.text, let rangeText = Range(range, in: text) {
+            let result = text.replacingCharacters(in: rangeText, with: string)
+            textField.text = result
+            
+            if textField == myView.mailTextFild {
+                verificationModel.getFilterMail(text: result)
+                myView.collectionView.reloadData()
+            }
+            if result.isValidType(validType: validType) {
+                myView.statusLabel.text = validMessage
+                myView.statusLabel.textColor = .green
+            } else {
+                myView.statusLabel.alpha = 1
+                myView.statusLabel.textColor = .red
+                myView.statusLabel.text = wrongMessage
+            }
         }
     }
 }
@@ -106,9 +100,11 @@ extension AuthenticationVC: AuthenticationViewDelegate {
         let controller = LogInViewVC()
         navigationController?.pushViewController(controller, animated: true)
     }
+    
     func googleButtonTapped() {
         print(#function)
     }
+    
     func appleButtonTapped() {
         print(#function)
     }
@@ -122,29 +118,29 @@ extension AuthenticationVC: UITextFieldDelegate {
         case myView.firstNameTextFild: setTextfield(textField: myView.firstNameTextFild,
                                                     label: myView.statusLabel,
                                                     validType: firstNameValidType,
-                                                    validMessage: Resources.TextNamed.validMessageFirst,
-                                                    wrongMessage: Resources.TextNamed.wrongMessageeF,
+                                                    validMessage: Text.validMessageFirst,
+                                                    wrongMessage: Text.wrongMessageeF,
                                                     string: string,
                                                     range: range)
         case myView.lastNameTextFild: setTextfield(textField: myView.lastNameTextFild,
                                                    label: myView.statusLabel,
                                                    validType: firstNameValidType,
-                                                   validMessage: Resources.TextNamed.validMessageLast,
-                                                   wrongMessage: Resources.TextNamed.wrongMessageeL,
+                                                   validMessage: Text.validMessageLast,
+                                                   wrongMessage: Text.wrongMessageeL,
                                                    string: string,
                                                    range: range)
         case myView.passwordTextFild: setTextfield(textField: myView.passwordTextFild,
                                                    label: myView.statusLabel,
                                                    validType: passwordValidType,
-                                                   validMessage: Resources.TextNamed.validMessagePassword,
-                                                   wrongMessage: Resources.TextNamed.wrongMessageeP,
+                                                   validMessage: Text.validMessagePassword,
+                                                   wrongMessage: Text.wrongMessageeP,
                                                    string: string,
                                                    range: range)
         case myView.mailTextFild: setTextfield(textField: myView.mailTextFild,
                                                label: myView.statusLabel,
                                                validType: emailValidType,
-                                               validMessage: Resources.TextNamed.validMessageeMail,
-                                               wrongMessage: Resources.TextNamed.wrongMessageeMail,
+                                               validMessage: Text.validMessageeMail,
+                                               wrongMessage: Text.wrongMessageeMail,
                                                string: string,
                                                range: range)
         default:
@@ -152,30 +148,27 @@ extension AuthenticationVC: UITextFieldDelegate {
         }
         return false
     }
+    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         myView.statusLabel.alpha = 0
         verificationModel.filteredMailArray = []
         myView.collectionView.reloadData()
         return true
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        myView.firstNameTextFild.resignFirstResponder()
-        myView.lastNameTextFild.resignFirstResponder()
-        myView.mailTextFild.resignFirstResponder()
-        myView.passwordTextFild.resignFirstResponder()
-        return true
-    }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.resignFirstResponder()
         return true
     }
 }
+
 // MARK: - UICollectionViewDataSource
 
 extension AuthenticationVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         verificationModel.filteredMailArray.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
     UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IdCell.idMailCell.rawValue,
@@ -201,6 +194,7 @@ extension AuthenticationVC: SelectProposedMailProtocol {
         myView.collectionView.reloadData()
     }
 }
+
 // MARK: - RegisterKeyboardNotification
 
 extension AuthenticationVC {
@@ -219,7 +213,8 @@ extension AuthenticationVC {
         let keyboardheigth = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         myView.scrollView.contentOffset = CGPoint(x: 0, y: keyboardheigth!.height / 2.65 )
     }
+
     @objc private func kevboardwillHide(notification: NSNotification) {
         myView.scrollView.contentOffset = CGPoint.zero
     }
-}
+ }

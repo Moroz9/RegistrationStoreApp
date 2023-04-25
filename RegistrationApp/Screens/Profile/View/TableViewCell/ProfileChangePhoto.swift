@@ -18,22 +18,26 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
         return imageView
     }()
     private let storage: UserDefaultsManagerProtocol = UserDefaultsManager()
-    private var labelChangeNameText = UILabel(text: "", textColor: .black,
+    private var labelChangeNameText = UILabel(textColor: .black,
                     font: UIFont.systemFont(ofSize: 8), alignment: .left)
-    private var labelNameText = UILabel(text: "", textColor: .black,
+    private var labelNameText = UILabel(textColor: .black,
                     font: UIFont.systemFont(ofSize: 20, weight: .bold), alignment: .center)
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
         setLogInConstrains()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func setLogInConstrains() {
         addSubview(photoImageView)
         addSubview(labelChangeNameText)
         addSubview(labelNameText)
+        
         NSLayoutConstraint.activate([
             photoImageView.heightAnchor.constraint(equalToConstant: 80),
             photoImageView.widthAnchor.constraint(equalToConstant: 80),

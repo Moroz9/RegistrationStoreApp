@@ -7,34 +7,32 @@
 
 import Foundation
 
+// MARK: - List Section
+
 enum ListSection {
-    case category([ListItem])
-    case latest([ListItem])
-    case flashSale([ListItem])
-    case brands([ListItem])
-    
-    var items: [ListItem] {
+    case category([Category])
+    case latest([LatestElement])
+    case flashSale([FlashSaleElement])
+
+    var items: [Any] {
         switch self {
-        case .category(let items),
-             .latest(let items),
-             .flashSale(let items),
-             .brands(let items):
-            return items
+        case .category(let categories):
+            return categories
+        case .latest(let latest):
+            return latest
+        case .flashSale(let flashSale):
+            return flashSale
         }
     }
-    var count: Int {
-        return items.count
-    }
+
     var title: String {
         switch self {
         case .category:
-            return ""
+            return "Categories"
         case .latest:
-            return "latest"
+            return "Latest"
         case .flashSale:
             return "Flash Sale"
-        case .brands:
-            return "Brands"
         }
     }
 }

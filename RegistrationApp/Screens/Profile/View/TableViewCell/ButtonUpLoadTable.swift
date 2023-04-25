@@ -14,23 +14,27 @@ final class ButtonUpLoadTableViewCell: UITableViewCell {
         backgroundColor = .clear
         setLogInConstrains()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private let upLoadButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Resources.Color.backgroundButton
-        button.setTitle(Resources.TextNamed.upload, for: .normal)
-        button.setTitleColor(Resources.Color.backgroundButtonText, for: .normal)
+        button.backgroundColor = Color.backgroundButton
+        button.setTitle(Text.upload, for: .normal)
+        button.setTitleColor(Color.backgroundButtonText, for: .normal)
         button.layer.cornerRadius = 15
         button.titleLabel?.font = .montserrat30()
-        button.setImage(UIImage(named: Resources.TextNamed.imageButton), for: .normal)
+        button.setImage(UIImage(named: Text.imageButton), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -40, bottom: 0, right: 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     private func setLogInConstrains() {
         addSubview(upLoadButton)
+        
         NSLayoutConstraint.activate([
             upLoadButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             upLoadButton.heightAnchor.constraint(equalToConstant: 46),

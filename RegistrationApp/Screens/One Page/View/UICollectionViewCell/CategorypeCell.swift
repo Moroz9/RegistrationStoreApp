@@ -12,7 +12,7 @@ final class CategorypeCollectionViewCell: UICollectionViewCell {
     private let categoryBackgroundView: UIImageView = {
         let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
-            imageView.image = UIImage(named: Resources.TextNamed.categoryBurger)
+            imageView.image = UIImage(named: Text.categoryBurger)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
         }()
@@ -20,38 +20,44 @@ final class CategorypeCollectionViewCell: UICollectionViewCell {
     private let categoryImageView: UIImageView = {
     let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: Resources.TextNamed.categoryBurger)
+        imageView.image = UIImage(named: Text.categoryBurger)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let categoryLabel: UILabel = {
     let label = UILabel()
-    label.text = Resources.TextNamed.category
+    label.text = Text.category
     label.textAlignment = .center
     label.font = UIFont.systemFont(ofSize: 10)
     label.textColor = .gray
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
    }()
+    
     override init( frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setConstraints()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func configureCell(categoryName: String, imageName: String) {
         categoryImageView.image = UIImage(named: imageName)
         categoryLabel.text = categoryName
         categoryImageView.layer.cornerRadius = categoryImageView.frame.height / 2
     }
+    
     func setupView() {
         addSubview(categoryBackgroundView)
         categoryBackgroundView.addSubview(categoryImageView)
         categoryBackgroundView.addSubview(categoryLabel)
         categoryBackgroundView.backgroundColor = .placeholderText
     }
+    
     func setConstraints() {
         NSLayoutConstraint.activate([
             categoryBackgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 0),

@@ -122,18 +122,18 @@ extension LogInViewVC: UITextFieldDelegate {
                                                        label: myLogView.statusLabelLogin,
                                                        validType: emailValidType,
                                                        validMessage:
-                                                        Resources.TextNamed.validMessageeMail,
+                                                        Text.validMessageeMail,
                                                        wrongMessage:
-                                                        Resources.TextNamed.wrongMessageeMail,
+                                                        Text.wrongMessageeMail,
                                                        string: string,
                                                        range: range)
         case myLogView.passwordTextFildLogIn: setTextfield(textField: myLogView.passwordTextFildLogIn,
                                                            label: myLogView.statusLabelLogin,
                                                            validType: passwordValidType,
                                                            validMessage:
-                                                            Resources.TextNamed.validMessagePassword,
+                                                            Text.validMessagePassword,
                                                            wrongMessage:
-                                                            Resources.TextNamed.wrongMessageeP,
+                                                            Text.wrongMessageeP,
                                                            string: string,
                                                            range: range)
         default:

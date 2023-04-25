@@ -16,21 +16,22 @@ class LogInView: UIView {
     
     // MARK: - Var/Let
     
-    let contentViewBackLog = UIView(backgroundColorView: Resources.Color.backgroundView)
+    let contentViewBackLog = UIView(backgroundColorView: Color.backgroundView)
     let scrollView = UIScrollView(imageName: nil)
     let contentView: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = Resources.Color.backgroundView
+        imageView.backgroundColor = Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    let statusLabelLogin = CustomLabel(title: Resources.TextNamed.textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelLogIn = CustomLabel(title: Resources.TextNamed.welcomeBack, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
-    lazy var logInButtonAuth = CustomButton(title: Resources.TextNamed.textLogIn, colorTitle: Resources.Color.backgroundButtonText,
-    backgroundColorButton: Resources.Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
+    let statusLabelLogin = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
+    let labelLogIn = CustomLabel(title: Text.welcomeBack, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    lazy var logInButtonAuth = CustomButton(title: Text.textLogIn, colorTitle: Color.backgroundButtonText,
+    backgroundColorButton: Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
     let eyeButton = EyeButton()
-    let passwordTextFildLogIn = CustomTextField(placeholderTextField: Resources.TextNamed.textPassword)
-    let mailTextFildLogIn = CustomTextField(placeholderTextField: Resources.TextNamed.textEmail)
+    
+    let passwordTextFildLogIn = CustomTextField(placeholderTextField: Text.textPassword)
+    let mailTextFildLogIn = CustomTextField(placeholderTextField: Text.textEmail)
     let collectionViewLogIn = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var stackViewLogIn = UIStackView(arrangedSubviews: [labelLogIn, statusLabelLogin, mailTextFildLogIn,
                                                              passwordTextFildLogIn, logInButtonAuth,
@@ -45,16 +46,19 @@ class LogInView: UIView {
         setupPasswordTF()
         setConstrains()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Flow funcs
+    
      func setupPasswordTF() {
         passwordTextFildLogIn.rightView = eyeButton
         passwordTextFildLogIn.rightViewMode = .always
         passwordTextFildLogIn.isSecureTextEntry = true
     }
+    
     private func setupView() {
         addSubview(contentViewBackLog)
         addSubview(scrollView)
@@ -69,11 +73,14 @@ class LogInView: UIView {
     @objc func logInButtonAuthTapped() {
         delegate?.logInButtonAuthTapped()
     }
+    
     @objc func logInEyeButtonTapped() {
         delegate?.logInEyeButtonTapped()
     }
 }
+
 // MARK: - SetConstrains
+
 extension LogInView {
     private func setConstrains() {
         NSLayoutConstraint.activate([

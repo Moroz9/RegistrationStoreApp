@@ -1,5 +1,5 @@
 //
-//  FlashSaleModel.swift
+//  FlashSaleData.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 20.04.23.
@@ -8,23 +8,26 @@
 import Foundation
 
 // MARK: - FlashSale
-struct FlashSaleData: Codable {
+
+struct FlashSaleData: Decodable {
     let flashSale: [FlashSaleElement]
 
     enum CodingKeys: String, CodingKey {
-        case flashSale
+        case flashSale = "flash_sale"
     }
 }
 
 // MARK: - FlashSaleElement
-struct FlashSaleElement: Codable {
-    let category, name: String
+
+struct FlashSaleElement: Decodable {
+    let category: String
+    let name: String
     let price: Double
-    let discount: Int
-    let imageURL: String?
+    let discount: Double
+    let imageUrl: String
 
     enum CodingKeys: String, CodingKey {
         case category, name, price, discount
-        case imageURL
+        case imageUrl = "image_url"
     }
 }

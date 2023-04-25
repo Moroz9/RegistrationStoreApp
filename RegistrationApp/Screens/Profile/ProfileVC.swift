@@ -9,9 +9,9 @@ import UIKit
 
 final class ProfileVC: UIViewController {
     // MARK: - Let \ Var
-    let contentViewBack: UIView = {
+    private let contentViewBack: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = Resources.Color.backgroundView
+        imageView.backgroundColor = Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -29,7 +29,9 @@ final class ProfileVC: UIViewController {
         return tableView
         
     }()
+    
     // MARK: - Lifecycle funcs
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -38,11 +40,13 @@ final class ProfileVC: UIViewController {
         setData()
         dataSource = createDataSource()
     }
+    
     // MARK: - Flow funcs
+    
     private func setupViews() {
         view.addSubview(contentViewBack)
         view.addSubview(tableView)
-        let castomTitleView = createCustomTitleView(contactName: Resources.TextNamed.textProfile )
+        let castomTitleView = createCustomTitleView(contactName: Text.textProfile )
         navigationItem.titleView = castomTitleView
         
     tableView.register(ProfileChangePhotoViewCell.self, forCellReuseIdentifier: CellIdentifier.idProfileChangePhotoCell)
@@ -50,11 +54,13 @@ final class ProfileVC: UIViewController {
         CellIdentifier.idProfileButtonCell)
     tableView.register(ProfileButtonSettingsViewCell.self, forCellReuseIdentifier: CellIdentifier.idProfileButtonSettingsCell)
     }
+    
     private func setData() {
         tableView.reloadData()
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
     func showPicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -63,6 +69,7 @@ final class ProfileVC: UIViewController {
         present(picker, animated: true, completion: nil)
     }
 }
+
 // MARK: - UIImagePickerControllerDelegate
 
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -82,6 +89,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         tableView.reloadData()
     }
 }
+
 // MARK: - ProfileVC
 
 private extension ProfileVC {
@@ -93,6 +101,7 @@ private extension ProfileVC {
         return sections
     }
 }
+
 // MARK: - UITableViewDelegate
 
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
@@ -136,6 +145,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             return cell ?? UITableViewCell()
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         switch indexPath {
@@ -165,6 +175,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
 // MARK: - ProfileVC
 
 extension ProfileVC {

@@ -9,7 +9,7 @@ import UIKit
 
 extension OnePageVC {
     func createLayout() -> UICollectionViewCompositionalLayout {
-        let sections = MockData.shared.pageData
+        let sections = pageData
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self = self else {return nil}
             let section = sections[sectionIndex]
@@ -47,19 +47,10 @@ extension OnePageVC {
                 section.contentInsets = .init(top: 0, leading: 10, bottom: -40, trailing: 10)
                 section.supplementariesFollowContentInsets = false
                 return section
-            case .brands:
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.8)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.47), heightDimension: .fractionalHeight(0.47)), subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuous
-                section.interGroupSpacing = 7
-                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
-                section.supplementariesFollowContentInsets = false
-                return section
             }
         }
     }
+    
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                 heightDimension: .estimated(30)),

@@ -8,6 +8,7 @@
 import UIKit
 
 final class CustomLabel: UILabel {
+    
     public var isValid: Bool  = false {
         didSet {
             if self.isValid {
@@ -17,9 +18,11 @@ final class CustomLabel: UILabel {
             }
         }
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
     init(title: String, textColorLabel: UIColor, alphaLabel: CGFloat, fontCastumLabel: UIFont?) {
         super.init(frame: .zero)
         text = title
@@ -31,17 +34,20 @@ final class CustomLabel: UILabel {
         alpha = alphaLabel
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func setNotValidSetting() {
         text = "Mail is not valid. Example: name@domein.ru"
-        textColor = Resources.Color.textColorStatusLabelRed
+        textColor = Color.textColorStatusLabelRed
         alpha = 1
     }
+    
     private func setValidSetting() {
         text = "Mail is valid"
-        textColor = Resources.Color.textColorStatusLabelGreen
+        textColor = Color.textColorStatusLabelGreen
         alpha = 1
     }
 }

@@ -8,13 +8,16 @@
 import UIKit
 
 final class EyeButton: UIButton {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupEyeButton()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func setupEyeButton() {
         setImage(UIImage(named: "ImagEays.Slash"), for: .normal)
         tintColor = .black

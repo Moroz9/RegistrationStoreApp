@@ -21,31 +21,35 @@ final class SearchTextFild: UITextField, UITextFieldDelegate {
         configure()
         delegate = self
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func configure() {
-        backgroundColor = Resources.Color.backgroundTextFied
+        backgroundColor = Color.backgroundTextFied
         borderStyle = .none
         layer.cornerRadius = 15
-        textColor = Resources.Color.textColorTextField
+        textColor = Color.textColorTextField
 //        leftView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: self.frame.height))
         leftViewMode = .always
         clearButtonMode = .always
         returnKeyType = .done
-        placeholder = Resources.TextNamed.searchPlaceholder
+        placeholder = Text.searchPlaceholder
         textAlignment = .center
         font = UIFont.systemFont(ofSize: 12)
-        tintColor = Resources.Color.textColorTextField
+        tintColor = Color.textColorTextField
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
+
 // MARK: - UITextFieldDelegate
 
 extension SearchTextFild {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.resignFirstResponder()
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text, let rangeText = Range(range, in: text) {
             let updateText = text.replacingCharacters(in: rangeText, with: string)
@@ -53,6 +57,7 @@ extension SearchTextFild {
         }
         return true
     }
+    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textFieldDelegate?.cleanOutTextField()
         return true

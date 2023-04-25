@@ -8,83 +8,94 @@
 import UIKit
 
 final class BrendsCollectionViewCell: UICollectionViewCell {
-    private let backgraundBrandsImageView: UIImageView = {
+    
+    private let backgroundBrandsImageView: UIImageView = {
     let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let categoryBrandImageView = UIImageView(imageName: "imageCategorSale")
     private let profileBrandImageView = UIImageView(imageName: "imageProfile")
     private let brandImageView = UIImageView(imageName: "imageSales")
-    private let categoryBrandsLabel = UILabel(text: "Category", textColor: .black,
+    private let categoryBrandsLabel = UILabel(textColor: .black,
                                       font: UIFont.systemFont(ofSize: 8), alignment: .left)
-    private let nameBrandsLabel = UILabel(text: "Nev Balsnce sneacers", textColor: .white,
+    private let nameBrandsLabel = UILabel(textColor: .white,
                                       font: UIFont.systemFont(ofSize: 28, weight: .bold), alignment: .center)
-    private let priceBrandsLabel = UILabel(text: "$33,00", textColor: .white,
+    private let priceBrandsLabel = UILabel(textColor: .white,
                                       font: UIFont.systemFont(ofSize: 10), alignment: .left)
-    private let labelBrands = UILabel(text: "Sales 30%", textColor: .white,
+    private let discountBrandsLabel = UILabel(textColor: .white,
                                       font: UIFont.systemFont(ofSize: 8), alignment: .center)
+    
     private let addBrandsButton = UIButton(imageName: "addProductSale")
     private let likeBrandsButton = UIButton(imageName: "likeproduct")
+    
     override init( frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setConstraints()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func configureCe11(categoryName: String, imageName: String) {
-        backgraundBrandsImageView.image = UIImage(named: imageName)
-        categoryBrandsLabel.text =  categoryName
+    
+    func configureCell(category: String, name: String, price: Double, discount: Int, imageUrl: String) {
+        backgroundBrandsImageView.loadFrom(URLAddress: imageUrl)
+        categoryBrandsLabel.text =  category
+        nameBrandsLabel.text = name
+        priceBrandsLabel.text = String(price)
+        discountBrandsLabel.text = String(discount)
     }
+    
    private func setupView() {
-       addSubview(backgraundBrandsImageView)
-       backgraundBrandsImageView.backgroundColor = .placeholderText
-       backgraundBrandsImageView.addSubview(categoryBrandImageView)
+       addSubview(backgroundBrandsImageView)
+       backgroundBrandsImageView.backgroundColor = .placeholderText
+       backgroundBrandsImageView.addSubview(categoryBrandImageView)
        categoryBrandImageView.addSubview(categoryBrandsLabel)
-       backgraundBrandsImageView.addSubview(nameBrandsLabel)
-       backgraundBrandsImageView.addSubview(priceBrandsLabel)
-       backgraundBrandsImageView.addSubview(addBrandsButton)
-       backgraundBrandsImageView.addSubview(likeBrandsButton)
-       backgraundBrandsImageView.addSubview(profileBrandImageView)
-       backgraundBrandsImageView.addSubview(brandImageView)
-       brandImageView.addSubview(labelBrands)
+       backgroundBrandsImageView.addSubview(nameBrandsLabel)
+       backgroundBrandsImageView.addSubview(priceBrandsLabel)
+       backgroundBrandsImageView.addSubview(addBrandsButton)
+       backgroundBrandsImageView.addSubview(likeBrandsButton)
+       backgroundBrandsImageView.addSubview(profileBrandImageView)
+       backgroundBrandsImageView.addSubview(brandImageView)
+       brandImageView.addSubview(discountBrandsLabel)
     }
    private func setConstraints() {
         NSLayoutConstraint.activate([
-            backgraundBrandsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            backgraundBrandsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            backgraundBrandsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            backgraundBrandsImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            backgroundBrandsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            backgroundBrandsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            backgroundBrandsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            backgroundBrandsImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
-            categoryBrandImageView.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
-            categoryBrandImageView.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -83),
+            categoryBrandImageView.leadingAnchor.constraint(equalTo: backgroundBrandsImageView.leadingAnchor, constant: 10),
+            categoryBrandImageView.bottomAnchor.constraint(equalTo: backgroundBrandsImageView.bottomAnchor, constant: -83),
             categoryBrandsLabel.centerXAnchor.constraint(equalTo: categoryBrandImageView.centerXAnchor),
             categoryBrandsLabel.centerYAnchor.constraint(equalTo: categoryBrandImageView.centerYAnchor),
             
-            nameBrandsLabel.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
-            nameBrandsLabel.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -42),
+            nameBrandsLabel.leadingAnchor.constraint(equalTo: backgroundBrandsImageView.leadingAnchor, constant: 10),
+            nameBrandsLabel.bottomAnchor.constraint(equalTo: backgroundBrandsImageView.bottomAnchor, constant: -42),
             nameBrandsLabel.widthAnchor.constraint(equalToConstant: 82),
 
-            priceBrandsLabel.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 10),
-            priceBrandsLabel.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -17),
+            priceBrandsLabel.leadingAnchor.constraint(equalTo: backgroundBrandsImageView.leadingAnchor, constant: 10),
+            priceBrandsLabel.bottomAnchor.constraint(equalTo: backgroundBrandsImageView.bottomAnchor, constant: -17),
             
-            addBrandsButton.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -5),
-            addBrandsButton.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -5),
+            addBrandsButton.trailingAnchor.constraint(equalTo: backgroundBrandsImageView.trailingAnchor, constant: -5),
+            addBrandsButton.bottomAnchor.constraint(equalTo: backgroundBrandsImageView.bottomAnchor, constant: -5),
 
-            likeBrandsButton.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -45),
-            likeBrandsButton.bottomAnchor.constraint(equalTo: backgraundBrandsImageView.bottomAnchor, constant: -5),
+            likeBrandsButton.trailingAnchor.constraint(equalTo: backgroundBrandsImageView.trailingAnchor, constant: -45),
+            likeBrandsButton.bottomAnchor.constraint(equalTo: backgroundBrandsImageView.bottomAnchor, constant: -5),
 
-            profileBrandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 7),
-            profileBrandImageView.leadingAnchor.constraint(equalTo: backgraundBrandsImageView.leadingAnchor, constant: 7),
+            profileBrandImageView.topAnchor.constraint(equalTo: backgroundBrandsImageView.topAnchor, constant: 7),
+            profileBrandImageView.leadingAnchor.constraint(equalTo: backgroundBrandsImageView.leadingAnchor, constant: 7),
 
-            brandImageView.topAnchor.constraint(equalTo: backgraundBrandsImageView.topAnchor, constant: 7),
-            brandImageView.trailingAnchor.constraint(equalTo: backgraundBrandsImageView.trailingAnchor, constant: -7),
+            brandImageView.topAnchor.constraint(equalTo: backgroundBrandsImageView.topAnchor, constant: 7),
+            brandImageView.trailingAnchor.constraint(equalTo: backgroundBrandsImageView.trailingAnchor, constant: -7),
 
-            labelBrands.centerXAnchor.constraint(equalTo: brandImageView.centerXAnchor),
-            labelBrands.centerYAnchor.constraint(equalTo: brandImageView.centerYAnchor)
+            discountBrandsLabel.centerXAnchor.constraint(equalTo: brandImageView.centerXAnchor),
+            discountBrandsLabel.centerYAnchor.constraint(equalTo: brandImageView.centerYAnchor)
         ])
     }
 }

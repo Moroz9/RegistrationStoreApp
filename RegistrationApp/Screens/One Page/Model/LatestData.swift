@@ -1,5 +1,5 @@
 //
-//  LatestModel.swift
+//  LatestData.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 20.04.23.
@@ -9,11 +9,13 @@
 import Foundation
 
 // MARK: - Latest
+
 struct LatestData: Decodable {
     let latest: [LatestElement]
 }
 
 // MARK: - LatestElement
+
 struct LatestElement: Decodable {
     let category, name: String
     let price: Double
@@ -21,7 +23,7 @@ struct LatestElement: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case category, name, price
-        case image_url
+        case image_url = "image_url"
     }
 }
 //   swiftlint:disable all

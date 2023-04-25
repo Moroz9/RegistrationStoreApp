@@ -18,29 +18,30 @@ final class AuthenticationView: UIView {
     
     // MARK: - Var/Let
     
-    let contentViewBack = UIView(backgroundColorView: Resources.Color.backgroundView)
+    let contentViewBack = UIView(backgroundColorView: Color.backgroundView)
     let contentView: UIView = {
         let imageView = UIView()
-        imageView.backgroundColor = Resources.Color.backgroundView
+        imageView.backgroundColor = Color.backgroundView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     let scrollView = UIScrollView(imageName: nil)
-    let statusLabel = CustomLabel(title: Resources.TextNamed.textCheckEmail, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelSignIn = CustomLabel(title: Resources.TextNamed.textSignIn, textColorLabel: Resources.Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
-    lazy var signInButtonAuth = CustomButton(title: Resources.TextNamed.textSignIn, colorTitle: Resources.Color.backgroundButtonText,
-        backgroundColorButton: Resources.Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
-    lazy var logInButtonAuth = CustomButton(title: Resources.TextNamed.textAlradyHaveAnAccoutn, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "", imageRight: 0, imageLeft: 0)
-    lazy var googleButtonAuth = CustomButton(title: Resources.TextNamed.textSignInWithGoogle,
+    let statusLabel = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
+    let labelSignIn = CustomLabel(title: Text.textSignIn, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    lazy var signInButtonAuth = CustomButton(title: Text.textSignIn, colorTitle: Color.backgroundButtonText,
+        backgroundColorButton: Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
+    lazy var logInButtonAuth = CustomButton(title: Text.textAlradyHaveAnAccoutn, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "", imageRight: 0, imageLeft: 0)
+    lazy var googleButtonAuth = CustomButton(title: Text.textSignInWithGoogle,
                                 colorTitle: .black, backgroundColorButton: .clear, configurationImage:
-                                Resources.TextNamed.imageGoogle, imageRight: 10, imageLeft: 0)
-    lazy var appleButtonAuth = CustomButton(title: Resources.TextNamed.textSignInWithApple,
+                                                Text.imageGoogle, imageRight: 10, imageLeft: 0)
+    lazy var appleButtonAuth = CustomButton(title: Text.textSignInWithApple,
                                 colorTitle: .black, backgroundColorButton: .clear, configurationImage:
-                                Resources.TextNamed.imageApple, imageRight: 20, imageLeft: 0)
-    let firstNameTextFild = CustomTextField(placeholderTextField: Resources.TextNamed.textFirstName)
-    let lastNameTextFild = CustomTextField(placeholderTextField: Resources.TextNamed.textLastName)
-    let passwordTextFild = CustomTextField(placeholderTextField: Resources.TextNamed.textPassword)
-    let mailTextFild = CustomTextField(placeholderTextField: Resources.TextNamed.textEmail)
+                                                Text.imageApple, imageRight: 20, imageLeft: 0)
+    let firstNameTextFild = CustomTextField(placeholderTextField: Text.textFirstName)
+    let lastNameTextFild = CustomTextField(placeholderTextField: Text.textLastName)
+    let passwordTextFild = CustomTextField(placeholderTextField: Text.textPassword)
+    let mailTextFild = CustomTextField(placeholderTextField: Text.textEmail)
     let collectionView = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var stackView = UIStackView(arrangedSubviews: [labelSignIn, statusLabel,
                                                         firstNameTextFild, lastNameTextFild, passwordTextFild,
