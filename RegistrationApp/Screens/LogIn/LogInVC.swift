@@ -16,7 +16,7 @@ final class LogInViewVC: ALogInViewController<LogInView> {
     private let emailValidType: String.ValidTypes = .email
     private var isPrivate = true
     
-    // MARK: - Lifecycle funcs
+    // MARK: - Lifecycle func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +24,14 @@ final class LogInViewVC: ALogInViewController<LogInView> {
         registerKeyboardNotification()
     }
     
-    // MARK: - Flow funcs
+    // MARK: - Flow func
     
     private func setDelegate() {
         myLogView.delegate = self
         myLogView.collectionViewLogIn.dataSource = self
         myLogView.collectionViewLogIn.selectMailDelegate = self
-        myLogView.mailTextFildLogIn.delegate = self
-        myLogView.passwordTextFildLogIn.delegate = self
+        myLogView.mailTextFieldLogIn.delegate = self
+        myLogView.passwordTextFieldLogIn.delegate = self
     }
     private func setTextfield(textField: UITextField, label: UILabel, validType: String.ValidTypes, validMessage: String, wrongMessage: String, string: String, range: NSRange) {
         let text = (textField.text ?? "") + string
@@ -43,7 +43,7 @@ final class LogInViewVC: ALogInViewController<LogInView> {
             result = text
         }
         textField.text = result
-        if textField == myLogView.mailTextFildLogIn {
+        if textField == myLogView.mailTextFieldLogIn {
             verificationModel.getFilterMail(text: result)
             myLogView.collectionViewLogIn.reloadData()
         }
@@ -56,14 +56,14 @@ final class LogInViewVC: ALogInViewController<LogInView> {
             myLogView.statusLabelLogin.text = wrongMessage
         }
     }
-    private func chekEmail(mail: String) -> Bool {
-        if storage.string(forkey: .email) == mail {
+    private func checkEmail(mail: String) -> Bool {
+        if storage.string(forKey: .email) == mail {
             return true
         }
         return false
     }
-    private func chekPassword(password: String) -> Bool {
-        if storage.string(forkey: .password) == password {
+    private func checkPassword(password: String) -> Bool {
+        if storage.string(forKey: .password) == password {
             return true
         }
         return false
@@ -75,16 +75,16 @@ extension LogInViewVC: LogInViewDelegate {
     func logInEyeButtonTapped() {
         let imageName = isPrivate ? "ImagEays" : "ImagEays.Slash"
         
-        myLogView.passwordTextFildLogIn.isSecureTextEntry.toggle()
+        myLogView.passwordTextFieldLogIn.isSecureTextEntry.toggle()
         myLogView.eyeButton.setImage(UIImage(named: imageName), for: .normal)
         isPrivate.toggle()
     }
     
     func logInButtonAuthTapped() {
-//        let emailNameText = myLogView.mailTextFildLogIn.text ?? ""
-//        let passwordText = myLogView.passwordTextFildLogIn.text ?? ""
-//        let checkEmail = chekEmail(mail: emailNameText)
-//        let checkPassword = chekPassword(password: passwordText)
+//        let emailNameText = myLogView.mailTextFieldLogIn.text ?? ""
+//        let passwordText = myLogView.passwordTextFieldLogIn.text ?? ""
+//        let checkEmail = checkEmail(mail: emailNameText)
+//        let checkPassword = checkPassword(password: passwordText)
 //
 //        if passwordText.isValidType(validType: passwordValidType)
 //            && emailNameText.isValidType(validType: emailValidType) == true {
@@ -97,17 +97,17 @@ extension LogInViewVC: LogInViewDelegate {
 //                } else {
 //                    myLogView.statusLabelLogin.alpha = 1
 //                    myLogView.statusLabelLogin.textColor = .red
-//                    myLogView.statusLabelLogin.text = "Please cheacked password"
+//                    myLogView.statusLabelLogin.text = "Please checked password"
 //                }
 //            } else {
 //                myLogView.statusLabelLogin.alpha = 1
 //                myLogView.statusLabelLogin.textColor = .red
-//                myLogView.statusLabelLogin.text = "Please cheacked email"
+//                myLogView.statusLabelLogin.text = "Please checked email"
 //            }
 //        } else {
 //            myLogView.statusLabelLogin.alpha = 1
 //            myLogView.statusLabelLogin.textColor = .red
-//            myLogView.statusLabelLogin.text = "Fill in all the filds"
+//            myLogView.statusLabelLogin.text = "Fill in all the fields"
 //        }
     }
 }
@@ -118,22 +118,22 @@ extension LogInViewVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         switch textField {
-        case myLogView.mailTextFildLogIn: setTextfield(textField: myLogView.mailTextFildLogIn,
+        case myLogView.mailTextFieldLogIn: setTextfield(textField: myLogView.mailTextFieldLogIn,
                                                        label: myLogView.statusLabelLogin,
                                                        validType: emailValidType,
                                                        validMessage:
-                                                        Text.validMessageeMail,
+                                                        Text.validMessageMail,
                                                        wrongMessage:
-                                                        Text.wrongMessageeMail,
+                                                        Text.wrongMessageMail,
                                                        string: string,
                                                        range: range)
-        case myLogView.passwordTextFildLogIn: setTextfield(textField: myLogView.passwordTextFildLogIn,
+        case myLogView.passwordTextFieldLogIn: setTextfield(textField: myLogView.passwordTextFieldLogIn,
                                                            label: myLogView.statusLabelLogin,
                                                            validType: passwordValidType,
                                                            validMessage:
                                                             Text.validMessagePassword,
                                                            wrongMessage:
-                                                            Text.wrongMessageeP,
+                                                            Text.wrongMessageP,
                                                            string: string,
                                                            range: range)
         default:
@@ -148,8 +148,8 @@ extension LogInViewVC: UITextFieldDelegate {
         return true
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        myLogView.mailTextFildLogIn.resignFirstResponder()
-        myLogView.passwordTextFildLogIn.resignFirstResponder()
+        myLogView.mailTextFieldLogIn.resignFirstResponder()
+        myLogView.passwordTextFieldLogIn.resignFirstResponder()
         return true
     }
     func textFieldDidChangeSelection(_ textField: UITextField) {
@@ -179,13 +179,13 @@ extension LogInViewVC: UICollectionViewDataSource {
 
 extension LogInViewVC: SelectProposedMailProtocol {
     func selectProposedMail(indexPath: IndexPath) {
-        guard let text = myLogView.mailTextFildLogIn.text else { return }
+        guard let text = myLogView.mailTextFieldLogIn.text else { return }
         verificationModel.getMailName(text: text)
         let domainMail = verificationModel.filteredMailArray[indexPath.row]
-        let mailfullName = verificationModel.nameMail + domainMail
-        myLogView.mailTextFildLogIn.text = mailfullName
-        myLogView.statusLabelLogin.isValid = mailfullName.isValidType(validType: emailValidType)
-        myLogView.logInButtonAuth.isValid = mailfullName.isValidType(validType: emailValidType)
+        let mailFullName = verificationModel.nameMail + domainMail
+        myLogView.mailTextFieldLogIn.text = mailFullName
+        myLogView.statusLabelLogin.isValid = mailFullName.isValidType(validType: emailValidType)
+        myLogView.logInButtonAuth.isValid = mailFullName.isValidType(validType: emailValidType)
         verificationModel.filteredMailArray = []
         myLogView.collectionViewLogIn.reloadData()
     }
@@ -196,21 +196,21 @@ extension LogInViewVC: SelectProposedMailProtocol {
 extension LogInViewVC {
     private func registerKeyboardNotification() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(kevboardwillshow),
+                                               selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(kevboardwillHide),
+                                               selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
-    @objc private func kevboardwillshow(notification: Notification) {
+    @objc private func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo
-        guard let keyboardheigth = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
+        guard let keyboardHeigth = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
                                     NSValue)?.cgRectValue else { return }
-        myLogView.scrollView.contentOffset = CGPoint(x: 0, y: keyboardheigth.height / 3 )
+        myLogView.scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeigth.height / 3 )
     }
-    @objc private func kevboardwillHide(notification: Notification) {
+    @objc private func keyboardWillHide(notification: Notification) {
         myLogView.scrollView.contentOffset = CGPoint.zero
     }
 }

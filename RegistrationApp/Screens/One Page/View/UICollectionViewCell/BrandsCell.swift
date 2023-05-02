@@ -1,5 +1,5 @@
 //
-//  BrendsCell.swift
+//  BrandsCell.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 17.04.23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BrendsCollectionViewCell: UICollectionViewCell {
+final class BrandsCollectionViewCell: UICollectionViewCell {
     
     private let backgroundBrandsImageView: UIImageView = {
     let imageView = UIImageView()

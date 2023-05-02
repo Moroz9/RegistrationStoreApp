@@ -14,7 +14,7 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
                 font: UIFont.systemFont(ofSize: 20), alignment: .left)
     private var secondaryText = UILabel(textColor: .black,
                 font: UIFont.systemFont(ofSize: 25), alignment: .center)
-    private var profileArroy = UIImageView(imageName: Text.arrow)
+    private var profileArrow = UIImageView(imageName: Text.arrow)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,7 +30,7 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
     private func setupView() {
         addSubview(leftIconName)
         addSubview(primaryText)
-        addSubview(profileArroy)
+        addSubview(profileArrow)
         addSubview(secondaryText)
     }
     
@@ -44,13 +44,13 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
             leftIconName.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             primaryText.leadingAnchor.constraint(equalTo: leftIconName.trailingAnchor, constant: 10),
-            primaryText.trailingAnchor.constraint(equalTo: profileArroy.trailingAnchor, constant: -100),
+            primaryText.trailingAnchor.constraint(equalTo: profileArrow.trailingAnchor, constant: -100),
             primaryText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             
-            profileArroy.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -45),
-            profileArroy.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            profileArroy.heightAnchor.constraint(equalToConstant: 15),
-            profileArroy.widthAnchor.constraint(equalToConstant: 8),
+            profileArrow.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -45),
+            profileArrow.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            profileArrow.heightAnchor.constraint(equalToConstant: 15),
+            profileArrow.widthAnchor.constraint(equalToConstant: 8),
             
             secondaryText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -45),
             secondaryText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
@@ -63,6 +63,6 @@ final class ProfileButtonSettingsViewCell: UITableViewCell {
         leftIconName.image = UIImage(named: user.leftIconName)
         primaryText.text = user.primaryText
         secondaryText.text = user.secondaryText
-        profileArroy.isHidden = user.withArrow || user.secondaryText != nil
+        profileArrow.isHidden = user.withArrow || user.secondaryText != nil
     }
 }

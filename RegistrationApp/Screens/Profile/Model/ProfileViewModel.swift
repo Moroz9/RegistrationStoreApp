@@ -39,13 +39,13 @@ extension ProfileButtonSettingsModel {
                         primaryText: "Balance", secondaryText: "$1593")
         let tradeHistory = ProfileButtonSettingsModel(leftIconName: "Folder",
                         primaryText: "Trade history", secondaryText: nil)
-        let restorePychase = ProfileButtonSettingsModel(leftIconName: "Restore",
-                        primaryText: "Resrote Pychase", secondaryText: nil)
+        let restorePurchase = ProfileButtonSettingsModel(leftIconName: "Restore",
+                        primaryText: "Restore Purchase", secondaryText: nil)
         let help = ProfileButtonSettingsModel(leftIconName: "Help",
                         primaryText: "Help", secondaryText: "")
         let logOut =  ProfileButtonSettingsModel(leftIconName: "LogOut",
                         primaryText: "Log Out", secondaryText: "")
-        return [tradeStore, paymentMethod, balance, tradeHistory, restorePychase, help, logOut ]
+        return [tradeStore, paymentMethod, balance, tradeHistory, restorePurchase, help, logOut ]
     }
 }
 

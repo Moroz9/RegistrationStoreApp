@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol SearchFildProtocol: AnyObject {
+protocol SearchFieldProtocol: AnyObject {
     func typingText(text: String )
     func cleanOutTextField()
 }
-// MARK: - PasswordLogInTextFild
+// MARK: - PasswordLogInTextField
 
-final class SearchTextFild: UITextField, UITextFieldDelegate {
+final class SearchTextField: UITextField, UITextFieldDelegate {
     
-    weak var textFieldDelegate: SearchFildProtocol?
+    weak var textFieldDelegate: SearchFieldProtocol?
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -27,7 +27,7 @@ final class SearchTextFild: UITextField, UITextFieldDelegate {
     }
     
     private func configure() {
-        backgroundColor = Color.backgroundTextFied
+        backgroundColor = Color.backgroundTextField
         borderStyle = .none
         layer.cornerRadius = 15
         textColor = Color.textColorTextField
@@ -45,7 +45,7 @@ final class SearchTextFild: UITextField, UITextFieldDelegate {
 
 // MARK: - UITextFieldDelegate
 
-extension SearchTextFild {
+extension SearchTextField {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.resignFirstResponder()
     }

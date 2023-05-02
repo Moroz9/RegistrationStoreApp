@@ -17,7 +17,7 @@ final class FlashSalesCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let categorySaleImageView = UIImageView(imageName: "imageCategorSale")
+    private let categorySaleImageView = UIImageView(imageName: "imageCategorySale")
     private let profileSaleImageView = UIImageView(imageName: "imageProfile")
     private let salesImageView = UIImageView(imageName: "imageSales")
     

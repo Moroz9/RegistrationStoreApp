@@ -57,11 +57,11 @@ extension UIViewController {
     func updateAttributesText() -> NSAttributedString {
         let stingOne = Text.tradeBy
         let attributesOne = [
-            NSAttributedString.Key.foregroundColor: Color.colotTextBlack
+            NSAttributedString.Key.foregroundColor: Color.colorTextBlack
         ]
         let stingTwo = Text.textBata
         let attributesTwo = [
-            NSAttributedString.Key.foregroundColor: Color.colotCustomTextBlue
+            NSAttributedString.Key.foregroundColor: Color.colorCustomTextBlue
         ]
         let attributesStingOne = NSMutableAttributedString(string: stingOne, attributes: attributesOne)
         let attributesStingTwo = NSAttributedString(string: stingTwo, attributes: attributesTwo)

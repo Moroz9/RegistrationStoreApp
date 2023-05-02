@@ -30,7 +30,7 @@ final class ProfileVC: UIViewController {
         
     }()
     
-    // MARK: - Lifecycle funcs
+    // MARK: - Lifecycle func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,13 @@ final class ProfileVC: UIViewController {
         dataSource = createDataSource()
     }
     
-    // MARK: - Flow funcs
+    // MARK: - Flow func
     
     private func setupViews() {
         view.addSubview(contentViewBack)
         view.addSubview(tableView)
-        let castomTitleView = createCustomTitleView(contactName: Text.textProfile )
-        navigationItem.titleView = castomTitleView
+        let customTitleView = createCustomTitleView(contactName: Text.textProfile )
+        navigationItem.titleView = customTitleView
         
     tableView.register(ProfileChangePhotoViewCell.self, forCellReuseIdentifier: CellIdentifier.idProfileChangePhotoCell)
     tableView.register(ButtonUpLoadTableViewCell.self, forCellReuseIdentifier:
@@ -83,7 +83,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         
         guard let data = chosenImage.jpegData(compressionQuality: 0.5) else { return }
             let encoded = try? PropertyListEncoder().encode(data)
-            storage.set(encoded, forkey: .imagePhoto)
+            storage.set(encoded, forKey: .imagePhoto)
         
         picker.dismiss(animated: true, completion: nil)
         tableView.reloadData()

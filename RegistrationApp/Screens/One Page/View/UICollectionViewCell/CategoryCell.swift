@@ -1,5 +1,5 @@
 //
-//  CategorypeCell.swift
+//  CategoryCell.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 17.04.23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CategorypeCollectionViewCell: UICollectionViewCell {
+final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private let categoryBackgroundView: UIImageView = {
         let imageView = UIImageView()

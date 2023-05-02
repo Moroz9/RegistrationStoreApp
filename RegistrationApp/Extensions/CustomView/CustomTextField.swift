@@ -14,7 +14,7 @@ final class CustomTextField: UITextField {
     
     init(placeholderTextField: String) {
         super.init(frame: .zero)
-        backgroundColor = Color.backgroundTextFied
+        backgroundColor = Color.backgroundTextField
         borderStyle = .none
         layer.cornerRadius = 10
         textColor = Color.textColorTextField
@@ -22,7 +22,7 @@ final class CustomTextField: UITextField {
         returnKeyType = .done
         placeholder = placeholderTextField
         textAlignment = .center
-        tintColor = Color.titntColorTextField
+        tintColor = Color.tintColorTextField
         translatesAutoresizingMaskIntoConstraints = false
     }
     

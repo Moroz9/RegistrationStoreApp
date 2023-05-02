@@ -27,30 +27,30 @@ final class AuthenticationView: UIView {
     }()
     
     let scrollView = UIScrollView(imageName: nil)
-    let statusLabel = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelSignIn = CustomLabel(title: Text.textSignIn, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    let statusLabel = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCustomLabel: .montserrat16())
+    let labelSignIn = CustomLabel(title: Text.textSignIn, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCustomLabel: .helvetica30())
     lazy var signInButtonAuth = CustomButton(title: Text.textSignIn, colorTitle: Color.backgroundButtonText,
         backgroundColorButton: Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
-    lazy var logInButtonAuth = CustomButton(title: Text.textAlradyHaveAnAccoutn, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "", imageRight: 0, imageLeft: 0)
+    lazy var logInButtonAuth = CustomButton(title: Text.textAlreadyHaveAnAccount, colorTitle: .black, backgroundColorButton: .clear, configurationImage: "", imageRight: 0, imageLeft: 0)
     lazy var googleButtonAuth = CustomButton(title: Text.textSignInWithGoogle,
                                 colorTitle: .black, backgroundColorButton: .clear, configurationImage:
                                                 Text.imageGoogle, imageRight: 10, imageLeft: 0)
     lazy var appleButtonAuth = CustomButton(title: Text.textSignInWithApple,
                                 colorTitle: .black, backgroundColorButton: .clear, configurationImage:
                                                 Text.imageApple, imageRight: 20, imageLeft: 0)
-    let firstNameTextFild = CustomTextField(placeholderTextField: Text.textFirstName)
-    let lastNameTextFild = CustomTextField(placeholderTextField: Text.textLastName)
-    let passwordTextFild = CustomTextField(placeholderTextField: Text.textPassword)
-    let mailTextFild = CustomTextField(placeholderTextField: Text.textEmail)
+    let firstNameTextField = CustomTextField(placeholderTextField: Text.textFirstName)
+    let lastNameTextField = CustomTextField(placeholderTextField: Text.textLastName)
+    let passwordTextField = CustomTextField(placeholderTextField: Text.textPassword)
+    let mailTextField = CustomTextField(placeholderTextField: Text.textEmail)
     let collectionView = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var stackView = UIStackView(arrangedSubviews: [labelSignIn, statusLabel,
-                                                        firstNameTextFild, lastNameTextFild, passwordTextFild,
-                                                        mailTextFild, signInButtonAuth, logInButtonAuth,
+                                                        firstNameTextField, lastNameTextField, passwordTextField,
+                                                        mailTextField, signInButtonAuth, logInButtonAuth,
                                                         collectionView, googleButtonAuth, appleButtonAuth ],
                                      axis: .vertical, spacing: 20)
     weak var delegate: AuthenticationViewDelegate?
     
-    // MARK: - Lifecycle funcs
+    // MARK: - Lifecycle func
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,7 +61,7 @@ final class AuthenticationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Flow funcs
+    // MARK: - Flow func
     
     private func setupView() {
         addSubview(contentViewBack)
@@ -74,7 +74,7 @@ final class AuthenticationView: UIView {
         appleButtonAuth.addTarget(self, action: #selector(appleButtonAuthTapped), for: .touchUpInside)
     }
     
-    // MARK: - Flow funcs(@objc)
+    // MARK: - Flow func(@objc)
     
     @objc func signInButtonAuthTapped() {
         delegate?.signInButtonAuthTapped()
@@ -111,12 +111,12 @@ extension AuthenticationView {
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            firstNameTextFild.heightAnchor.constraint(equalToConstant: 29),
-            lastNameTextFild.heightAnchor.constraint(equalToConstant: 29),
-            passwordTextFild.heightAnchor.constraint(equalToConstant: 29),
-            mailTextFild.heightAnchor.constraint(equalToConstant: 29),
+            firstNameTextField.heightAnchor.constraint(equalToConstant: 29),
+            lastNameTextField.heightAnchor.constraint(equalToConstant: 29),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 29),
+            mailTextField.heightAnchor.constraint(equalToConstant: 29),
             
-            signInButtonAuth.topAnchor.constraint(equalTo: mailTextFild.bottomAnchor, constant: 20),
+            signInButtonAuth.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 20),
             signInButtonAuth.heightAnchor.constraint(equalToConstant: 46),
             
             collectionView.heightAnchor.constraint(equalToConstant: 50),

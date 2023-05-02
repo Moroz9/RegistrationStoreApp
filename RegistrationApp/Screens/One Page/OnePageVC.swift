@@ -10,7 +10,7 @@ import UIKit
 final class OnePageVC: UIViewController {
     // MARK: - Let \ Var
     
-    private let searhTextFild = SearchTextFild()
+    private let searchTextField = SearchTextField()
     private let backgroundImageView: UIView = {
         let imageView = UIView()
         imageView.backgroundColor = Color.backgroundView
@@ -31,7 +31,7 @@ final class OnePageVC: UIViewController {
                    .init(name: "Headphones", image: "headphones"),
                    .init(name: "Games", image: "game"),
                    .init(name: "Cars", image: "car"),
-                   .init(name: "Furniture", image: "furinute"),
+                   .init(name: "Furniture", image: "furniture"),
                    .init(name: "Kids", image: "kids")])
     }()
     private var latestItems: [LatestElement] = []
@@ -40,7 +40,7 @@ final class OnePageVC: UIViewController {
     var pageData: [ListSection] {
         [category, .latest(latestItems), .flashSale(flashSales)]
     }
-    // MARK: - Lifecycle funcs
+    // MARK: - Lifecycle func
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -106,26 +106,26 @@ final class OnePageVC: UIViewController {
             }
         }
     }
-    // MARK: - Flow funcs
+    // MARK: - Flow func
     
     private func setupViews() {
         view.addSubview(backgroundImageView)
-        backgroundImageView.addSubview(searhTextFild)
+        backgroundImageView.addSubview(searchTextField)
         backgroundImageView.addSubview(collectionView)
         
         let clipPathGroup = createCustomButtonPageOne(imageName: "Image.clippathgroup", selector: #selector (barButtonTapped))
-        let castomTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: "location", contactImage: "Image.imagePhoto")
+        let customTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: "location", contactImage: "Image.imagePhoto")
         navigationItem.leftBarButtonItem = clipPathGroup
-        navigationItem.titleView = castomTitleView
+        navigationItem.titleView = customTitleView
         
-        collectionView.register(CategorypeCollectionViewCell.self,
-                                forCellWithReuseIdentifier: CollectionViewCell.categorypeCollectionViewCell)
+        collectionView.register(CategoryCollectionViewCell.self,
+                                forCellWithReuseIdentifier: CollectionViewCell.categoryCollectionViewCell)
         collectionView.register(LatestCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CollectionViewCell.latestCollectionViewCell)
         collectionView.register(FlashSalesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CollectionViewCell.fastSaleCollectionViewCell)
-        collectionView.register(BrendsCollectionViewCell.self,
-                                forCellWithReuseIdentifier: CollectionViewCell.brendsCollectionViewCell)
+        collectionView.register(BrandsCollectionViewCell.self,
+                                forCellWithReuseIdentifier: CollectionViewCell.brandsCollectionViewCell)
         collectionView.register(CollectionViewHeaderReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: CollectionViewCell.collectionViewHeaderReusableView)
@@ -150,10 +150,10 @@ extension OnePageVC {
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            searhTextFild.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            searhTextFild.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 56),
-            searhTextFild.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -56),
-            searhTextFild.heightAnchor.constraint(equalToConstant: 30),
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            searchTextField.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 56),
+            searchTextField.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -56),
+            searchTextField.heightAnchor.constraint(equalToConstant: 30),
 
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             collectionView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 0),
@@ -173,8 +173,8 @@ extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch pageData[indexPath.section] {
         case .category(let categories):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.categorypeCollectionViewCell,
-                  for: indexPath) as? CategorypeCollectionViewCell else { return UICollectionViewCell()}
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.categoryCollectionViewCell,
+                  for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell()}
             cell.configureCell(categoryName: categories[indexPath.row].name, imageName: categories[indexPath.row].image)
             return cell
         case .latest(let latest):

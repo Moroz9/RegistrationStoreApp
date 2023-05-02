@@ -26,11 +26,11 @@ final class MainTabBarController: UITabBarController {
     func setupTabBar() {
         let onePageViewController = createNavController(VController: OnePageVC(), itemName: "", itemImage: "home")
         let profileViewController = createNavController(VController: ProfileVC(), itemName: "", itemImage: "profile")
-        //    let massegeViewController = createNavController(vController: OneViewController(), itemName: "", itemImage: "love")
+        //    let messageViewController = createNavController(vController: OneViewController(), itemName: "", itemImage: "love")
         //    let likeViewController = createNavController(vController: TwoViewController(), itemName: "", itemImage: "massage")
         //    let basketViewController = createNavController(vController: ThirdViewController(),itemName: "", itemImage: "SaveProduct")
         
-        //        viewControllers = [onePageViewController, massegeViewController,
+        //        viewControllers = [onePageViewController, messageViewController,
         //                           basketViewController, likeViewController, profileViewController]
         viewControllers = [onePageViewController, profileViewController]
     }

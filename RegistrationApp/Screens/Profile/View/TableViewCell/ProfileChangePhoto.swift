@@ -61,6 +61,6 @@ final class ProfileChangePhotoViewCell: UITableViewCell {
         
         photoImageView.image = image ?? UIImage(named: "ImagePhoto")
         labelChangeNameText.text = user.changeName
-        labelNameText.text = (storage.string(forkey: .firstName) ?? " Didn't found Name") + " " + ( storage.string(forkey: .lastName) ?? " Didn't found Last Name")
+        labelNameText.text = (storage.string(forKey: .firstName) ?? " Didn't found Name") + " " + ( storage.string(forKey: .lastName) ?? " Didn't found Last Name")
     }
 }

@@ -24,21 +24,21 @@ class LogInView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    let statusLabelLogin = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCastumLabel: .montserrat16())
-    let labelLogIn = CustomLabel(title: Text.welcomeBack, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCastumLabel: .helvetica30())
+    let statusLabelLogin = CustomLabel(title: Text.textCheckEmail, textColorLabel: Color.backgroundLabel, alphaLabel: 0, fontCustomLabel: .montserrat16())
+    let labelLogIn = CustomLabel(title: Text.welcomeBack, textColorLabel: Color.backgroundLabel, alphaLabel: 1, fontCustomLabel: .helvetica30())
     lazy var logInButtonAuth = CustomButton(title: Text.textLogIn, colorTitle: Color.backgroundButtonText,
     backgroundColorButton: Color.backgroundButton, configurationImage: "", imageRight: 0, imageLeft: 0)
     let eyeButton = EyeButton()
     
-    let passwordTextFildLogIn = CustomTextField(placeholderTextField: Text.textPassword)
-    let mailTextFildLogIn = CustomTextField(placeholderTextField: Text.textEmail)
+    let passwordTextFieldLogIn = CustomTextField(placeholderTextField: Text.textPassword)
+    let mailTextFieldLogIn = CustomTextField(placeholderTextField: Text.textEmail)
     let collectionViewLogIn = MailCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    lazy var stackViewLogIn = UIStackView(arrangedSubviews: [labelLogIn, statusLabelLogin, mailTextFildLogIn,
-                                                             passwordTextFildLogIn, logInButtonAuth,
+    lazy var stackViewLogIn = UIStackView(arrangedSubviews: [labelLogIn, statusLabelLogin, mailTextFieldLogIn,
+                                                             passwordTextFieldLogIn, logInButtonAuth,
                                                              collectionViewLogIn ], axis: .vertical, spacing: 20)
     weak var delegate: LogInViewDelegate?
     
-    // MARK: - Lifecycle funcs
+    // MARK: - Lifecycle func
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,12 +51,12 @@ class LogInView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Flow funcs
+    // MARK: - Flow func
     
      func setupPasswordTF() {
-        passwordTextFildLogIn.rightView = eyeButton
-        passwordTextFildLogIn.rightViewMode = .always
-        passwordTextFildLogIn.isSecureTextEntry = true
+        passwordTextFieldLogIn.rightView = eyeButton
+        passwordTextFieldLogIn.rightViewMode = .always
+        passwordTextFieldLogIn.isSecureTextEntry = true
     }
     
     private func setupView() {
@@ -68,7 +68,7 @@ class LogInView: UIView {
         eyeButton.addTarget(self, action: #selector(logInEyeButtonTapped), for: .touchUpInside)
     }
     
-    // MARK: - Flow funcs(@objc)
+    // MARK: - Flow func(@objc)
     
     @objc func logInButtonAuthTapped() {
         delegate?.logInButtonAuthTapped()
@@ -102,10 +102,10 @@ extension LogInView {
             stackViewLogIn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
             stackViewLogIn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44),
             
-            mailTextFildLogIn.heightAnchor.constraint(equalToConstant: 29),
-            passwordTextFildLogIn.heightAnchor.constraint(equalToConstant: 29),
+            mailTextFieldLogIn.heightAnchor.constraint(equalToConstant: 29),
+            passwordTextFieldLogIn.heightAnchor.constraint(equalToConstant: 29),
             
-            logInButtonAuth.topAnchor.constraint(equalTo: passwordTextFildLogIn.bottomAnchor, constant: 20),
+            logInButtonAuth.topAnchor.constraint(equalTo: passwordTextFieldLogIn.bottomAnchor, constant: 20),
             logInButtonAuth.heightAnchor.constraint(equalToConstant: 46),
             
             collectionViewLogIn.topAnchor.constraint(equalTo: logInButtonAuth.bottomAnchor, constant: 20),

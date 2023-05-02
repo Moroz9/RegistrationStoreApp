@@ -17,7 +17,7 @@ final class LatestCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     private let categoryImageView = UIImageView(imageName: "imageCatedory")
-    private let categorytLabel = UILabel(textColor: .black,
+    private let categoryLabel = UILabel(textColor: .black,
                                     font: UIFont.systemFont(ofSize: 8), alignment: .left)
      let nameLabel = UILabel(textColor: .white,
                                     font: UIFont.systemFont(ofSize: 15), alignment: .left)
@@ -36,7 +36,7 @@ final class LatestCollectionViewCell: UICollectionViewCell {
     
     func configureCell(category: String, name: String, price: Double, imageUrl: String) {
         backgroundImageView.loadFrom(URLAddress: imageUrl)
-        categorytLabel.text =  category
+        categoryLabel.text =  category
         nameLabel.text = String(name)
         priceLabel.text = "$\(price)"
     }
@@ -44,7 +44,7 @@ final class LatestCollectionViewCell: UICollectionViewCell {
     func setupView() {
         addSubview(backgroundImageView)
         backgroundImageView.addSubview(categoryImageView)
-        categoryImageView.addSubview(categorytLabel)
+        categoryImageView.addSubview(categoryLabel)
         backgroundImageView.addSubview(nameLabel)
         backgroundImageView.addSubview(priceLabel)
         backgroundImageView.addSubview(upLoadButton)
@@ -59,8 +59,8 @@ final class LatestCollectionViewCell: UICollectionViewCell {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
         
             categoryImageView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 5),
-            categorytLabel.centerXAnchor.constraint(equalTo: categoryImageView.centerXAnchor),
-            categorytLabel.centerYAnchor.constraint(equalTo: categoryImageView.centerYAnchor),
+            categoryLabel.centerXAnchor.constraint(equalTo: categoryImageView.centerXAnchor),
+            categoryLabel.centerYAnchor.constraint(equalTo: categoryImageView.centerYAnchor),
     
             nameLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 5),
             nameLabel.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 7),

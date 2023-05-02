@@ -14,14 +14,14 @@ final class VerificationModel {
     public var filteredMailArray = [String]()
     
     private func filteringMails(text: String) {
-        var domeinMail = String()
+        var domainMail = String()
         filteredMailArray = []
         guard let firstIndex = text.firstIndex(of: "@") else {return}
         let endIndex = text.index(before: text.endIndex)
         let range = text[firstIndex...endIndex]
-        domeinMail = String(range)
+        domainMail = String(range)
         mailArray.forEach { mail in
-            if mail.contains(domeinMail) {
+            if mail.contains(domainMail) {
                 if !filteredMailArray.contains(mail) {
                     filteredMailArray.append(mail)
                 }
@@ -29,8 +29,8 @@ final class VerificationModel {
         }
     }
     private func deriveNameMail (text: String) {
-        guard let atSimvolIndex = text.firstIndex(of: "@") else {return}
-        let endIndex = text.index(before: atSimvolIndex)
+        guard let atSymbolsIndex = text.firstIndex(of: "@") else {return}
+        let endIndex = text.index(before: atSymbolsIndex)
         let firstIndex = text.startIndex
         let range = text[firstIndex...endIndex]
         nameMail = String(range)

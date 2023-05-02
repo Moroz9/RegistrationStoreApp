@@ -27,18 +27,18 @@ final class MailCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.9098039216, blue: 0.9098039216, alpha: 1)
+        contentView.backgroundColor = .white
         contentView.alpha = 0.5
         contentView.layer.cornerRadius = 10
         addSubview(domainLabel)
     }
     
-    private func configure(mailLabellText: String) {
-        domainLabel.text = mailLabellText
+    private func configure(mailLabelText: String) {
+        domainLabel.text = mailLabelText
     }
     
     func cellConfigure(mailLabelText: String) {
-        configure(mailLabellText: mailLabelText)
+        configure(mailLabelText: mailLabelText)
     }
     
     private func setConstraints() {

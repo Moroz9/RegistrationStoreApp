@@ -1,5 +1,5 @@
 //
-//  CastumLabel.swift
+//  CustomLabel.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 08.04.23.
@@ -23,11 +23,11 @@ final class CustomLabel: UILabel {
         super.init(frame: frame)
     }
     
-    init(title: String, textColorLabel: UIColor, alphaLabel: CGFloat, fontCastumLabel: UIFont?) {
+    init(title: String, textColorLabel: UIColor, alphaLabel: CGFloat, fontCustomLabel: UIFont?) {
         super.init(frame: .zero)
         text = title
         textColor = textColorLabel
-        font = fontCastumLabel
+        font = fontCustomLabel
         adjustsFontSizeToFitWidth = true
         textAlignment = .center
         translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ final class CustomLabel: UILabel {
     }
     
     private func setNotValidSetting() {
-        text = "Mail is not valid. Example: name@domein.ru"
+        text = "Mail is not valid. Example: name@domain.ru"
         textColor = Color.textColorStatusLabelRed
         alpha = 1
     }

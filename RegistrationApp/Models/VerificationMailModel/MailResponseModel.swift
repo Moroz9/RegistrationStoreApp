@@ -1,5 +1,5 @@
 //
-//  MailResponceModel.swift
+//  MailResponseModel.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 08.04.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MailResponceModel: Decodable {
+struct MailResponseModel: Decodable {
     let result: String
     let reason: String
     let didYouMean: String?
