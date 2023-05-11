@@ -14,9 +14,8 @@
 
 •	Если пользователь не помнит, что уже регистрировался и вводит данные для регистрации, которые есть в базе данных, то показывается соответствующая ошибка об уже существующем пользователе с такими данными 
 
-https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/8c0d9788-8df2-4d88-8807-e7ce6d4740d0
-
-https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/9de8ff4e-813d-4857-a1f7-4b647294b2d3
+![Uploading Simulator Screen Recording - iPhone 12 - 2023-05-11 at 17.39.32.gif…]()
+![Simulator Screen Recording - iPhone 12 - 2023-05-11 at 18 06 40](https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/f4a694a6-5348-433c-a759-35f341e87eb5)
 
 ### Третий экран:
 
