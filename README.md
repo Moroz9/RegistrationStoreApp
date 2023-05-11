@@ -8,7 +8,7 @@
 
 •	Если пользователь не помнит, что уже регистрировался и вводит данные для регистрации, которые есть в базе данных, то показывается соответствующая ошибка об уже существующем пользователе с такими данными 
 
-<video src='(https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/f4a694a6-5348-433c-a759-35f341e87eb5)' width=180/> | <video src='(https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/51c9500a-a37f-4af1-ab90-7d71959e3301)' width=180/>
+<video src=![Simulator Screen Recording - iPhone 12 - 2023-05-11 at 18 06 40](https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/f4a694a6-5348-433c-a759-35f341e87eb5) width=180/>
 ### Третий экран:
 
 Пользователь хочет посмотреть информацию в своем профиле
