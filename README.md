@@ -1,8 +1,15 @@
 # RegistrationStoreApp
 
-### Первый-Второй экран:
+# Используемый стек
+- UIKit
+- Не использовался Storyboard
+- Поддерживаемая версия Ios 13
+- MVVM
+- UserDefault. CRUD
 
-Сценарии использования:
+##
+
+### Первый - Второй экран:
 
 •	Полный цикл авторизации.
 
@@ -11,9 +18,12 @@
 •	Если пользователь не помнит, что уже регистрировался и вводит данные для регистрации, которые есть в базе данных, то показывается соответствующая ошибка об уже существующем пользователе с такими данными 
 
 <p float="left">
-  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/8c0d9788-8df2-4d88-8807-e7ce6d4740d0" width="40%" />
-  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/9de8ff4e-813d-4857-a1f7-4b647294b2d3" width="40%" /> 
+  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/e8eb16e7-e5d1-423a-886e-0c57b2f71cb7" width="30%" />
+  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/bd59b58f-87d6-4fc5-80d9-cb9421d3877e" width="30%" /> 
+  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/2ec6d4f7-2644-468d-b665-0bd24560e068" width="30%" /> 
 </p>
+
+##
 
 ### Третий экран:
 Сценарии использования:
@@ -27,14 +37,5 @@
 •	Обновление фотографии пользователя из библиотеки телефона
 
 <p float="left">
-  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/f7020218-7301-4028-b64b-de9942e47fe7" width="30%" />
+  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/4d82cc71-d1fd-406b-bb3f-3547b6db0a1b" width="30%" /> 
 </p>
-
-### Четвертый экран:
-•	Данные в блоке Latest и Flash Sale можно получить с помощью двух разных API
-
-### Используемый стек:
-1.
-2.
-3.
-4.
