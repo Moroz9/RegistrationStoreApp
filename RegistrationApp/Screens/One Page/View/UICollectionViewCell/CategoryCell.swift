@@ -30,7 +30,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     label.text = Text.category
     label.textAlignment = .center
     label.font = UIFont.systemFont(ofSize: 10)
-    label.textColor = .gray
+//    label.textColor = .gray
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
    }()

@@ -20,13 +20,13 @@ final class AuthenticationVC: AAuthenticationViewController<AuthenticationView> 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
+        setupDelegates()
         registerKeyboardNotification()
     }
     
     // MARK: - Flow func
     
-    private func setDelegate() {
+    private func setupDelegates() {
         myView.delegate = self
         myView.collectionView.dataSource = self
         myView.collectionView.selectMailDelegate = self
@@ -36,66 +36,63 @@ final class AuthenticationVC: AAuthenticationViewController<AuthenticationView> 
         myView.passwordTextField.delegate = self
     }
     private func checkEmail(mail: String) -> Bool {
-        if storage.string(forKey: .email) == mail {
-            return true
+            if storage.string(forKey: .email) == mail {
+                return true
+            }
+            return false
         }
-        return false
+    
+    private func validateTextFields() -> Bool {
+        guard let firstNameText = myView.firstNameTextField.text,
+              let lastNameText = myView.lastNameTextField.text,
+              let passwordText = myView.passwordTextField.text,
+              let emailText = myView.mailTextField.text else {
+            return false
+        }
+        
+        return firstNameText.isValidType(validType: firstNameValidType) &&
+            lastNameText.isValidType(validType: firstNameValidType) &&
+            passwordText.isValidType(validType: passwordValidType) &&
+            emailText.isValidType(validType: emailValidType)
     }
     
-    private func setTextfield(textField: UITextField, label: UILabel, validType: String.ValidTypes, validMessage: String, wrongMessage: String, string: String, range: NSRange) {
-        
-        if let text = textField.text, let rangeText = Range(range, in: text) {
-            let result = text.replacingCharacters(in: rangeText, with: string)
-            textField.text = result
-            
-            if textField == myView.mailTextField {
-                verificationModel.getFilterMail(text: result)
-                myView.collectionView.reloadData()
-            }
-            if result.isValidType(validType: validType) {
-                myView.statusLabel.text = validMessage
-                myView.statusLabel.textColor = .green
-            } else {
-                myView.statusLabel.alpha = 1
-                myView.statusLabel.textColor = .red
-                myView.statusLabel.text = wrongMessage
-            }
+    private func handleValidEmail(_ email: String) {
+        if checkEmail(mail: email) {
+            myView.statusLabel.alpha = 1
+            myView.statusLabel.textColor = .red
+            myView.statusLabel.text = "Please make new email"
+        } else {
+            storage.set(myView.firstNameTextField.text, forKey: .firstName)
+            storage.set(myView.lastNameTextField.text, forKey: .lastName)
+            storage.set(myView.passwordTextField.text, forKey: .password)
+            storage.set(email, forKey: .email)
+            let controller = MainTabBarController()
+            navigationController?.navigationBar.isHidden = true
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
+    private func handleInvalidFields() {
+        myView.statusLabel.alpha = 1
+        myView.statusLabel.textColor = .red
+        myView.statusLabel.text = "Fill in all the fields"
+    }
 }
+
 // MARK: - AuthenticationViewDelegate
 
 extension AuthenticationVC: AuthenticationViewDelegate {
     func signInButtonAuthTapped() {
-        let firstNameText = myView.firstNameTextField.text ?? ""
-        let lastNameText = myView.lastNameTextField.text ?? ""
-        let passwordText = myView.passwordTextField.text ?? ""
-        let emailText = myView.mailTextField.text ?? ""
-        let checkEmail = checkEmail(mail: emailText)
-        print(emailText)
+        guard validateTextFields() else {
+            handleInvalidFields()
+            return
+        }
         
-        if firstNameText.isValidType(validType: firstNameValidType) && passwordText.isValidType(validType: passwordValidType)
-            && lastNameText.isValidType(validType: firstNameValidType) && emailText.isValidType(validType: emailValidType) == true {
-            
-            if checkEmail == false {
-                storage.set(firstNameText, forKey: .firstName)
-                storage.set(lastNameText, forKey: .lastName)
-                storage.set(passwordText, forKey: .password)
-                storage.set(emailText, forKey: .email)
-                let controller = MainTabBarController()
-                navigationController?.navigationBar.isHidden = true
-                navigationController?.pushViewController(controller, animated: true)
-            } else {
-                myView.statusLabel.alpha = 1
-                myView.statusLabel.textColor = .red
-                myView.statusLabel.text = "Please make new email"
-            }
-        } else {
-            myView.statusLabel.alpha = 1
-            myView.statusLabel.textColor = .red
-            myView.statusLabel.text = "Fill in all the fields"
+        if let emailText = myView.mailTextField.text {
+            handleValidEmail(emailText)
         }
     }
+    
     func logInButtonAuthTapped() {
         let controller = LogInViewVC()
         navigationController?.pushViewController(controller, animated: true)
@@ -109,43 +106,64 @@ extension AuthenticationVC: AuthenticationViewDelegate {
         print(#function)
     }
 }
+
 // MARK: - Extensions UITextFieldDelegate
 
 extension AuthenticationVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
+        let validType: String.ValidTypes
+        var validMessage: String
+        var wrongMessage: String
+        var textFieldToUpdate: UITextField
+        
         switch textField {
-        case myView.firstNameTextField: setTextfield(textField: myView.firstNameTextField,
-                                                    label: myView.statusLabel,
-                                                    validType: firstNameValidType,
-                                                    validMessage: Text.validMessageFirst,
-                                                    wrongMessage: Text.wrongMessageF,
-                                                    string: string,
-                                                    range: range)
-        case myView.lastNameTextField: setTextfield(textField: myView.lastNameTextField,
-                                                   label: myView.statusLabel,
-                                                   validType: firstNameValidType,
-                                                   validMessage: Text.validMessageLast,
-                                                   wrongMessage: Text.wrongMessageL,
-                                                   string: string,
-                                                   range: range)
-        case myView.passwordTextField: setTextfield(textField: myView.passwordTextField,
-                                                   label: myView.statusLabel,
-                                                   validType: passwordValidType,
-                                                   validMessage: Text.validMessagePassword,
-                                                   wrongMessage: Text.wrongMessageP,
-                                                   string: string,
-                                                   range: range)
-        case myView.mailTextField: setTextfield(textField: myView.mailTextField,
-                                               label: myView.statusLabel,
-                                               validType: emailValidType,
-                                               validMessage: Text.validMessageMail,
-                                               wrongMessage: Text.wrongMessageMail,
-                                               string: string,
-                                               range: range)
+        case myView.firstNameTextField:
+            validType = firstNameValidType
+            validMessage = Text.validMessageFirst
+            wrongMessage = Text.wrongMessageF
+            textFieldToUpdate = myView.firstNameTextField
+        case myView.lastNameTextField:
+            validType = firstNameValidType
+            validMessage = Text.validMessageLast
+            wrongMessage = Text.wrongMessageL
+            textFieldToUpdate = myView.lastNameTextField
+        case myView.passwordTextField:
+            validType = passwordValidType
+            validMessage = Text.validMessagePassword
+            wrongMessage = Text.wrongMessageP
+            textFieldToUpdate = myView.passwordTextField
+        case myView.mailTextField:
+            validType = emailValidType
+            validMessage = Text.validMessageMail
+            wrongMessage = Text.wrongMessageMail
+            textFieldToUpdate = myView.mailTextField
         default:
-            break
+            return false
         }
+        
+        if let text = textField.text, let rangeText = Range(range, in: text) {
+            let result = text.replacingCharacters(in: rangeText, with: string)
+            textFieldToUpdate.text = result
+            
+            if textField == myView.mailTextField {
+                verificationModel.getFilterMail(text: result)
+                myView.collectionView.reloadData()
+            }
+            
+            let newPosition = textFieldToUpdate.position(from: textFieldToUpdate.beginningOfDocument, offset: range.location + string.count)
+            textFieldToUpdate.selectedTextRange = textFieldToUpdate.textRange(from: newPosition!, to: newPosition!)
+            
+            if result.isValidType(validType: validType) {
+                myView.statusLabel.text = validMessage
+                myView.statusLabel.textColor = .green
+            } else {
+                myView.statusLabel.alpha = 1
+                myView.statusLabel.textColor = .red
+                myView.statusLabel.text = wrongMessage
+            }
+        }
+        
         return false
     }
     
@@ -173,12 +191,15 @@ extension AuthenticationVC: UICollectionViewDataSource {
     UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IdCell.idMailCell.rawValue,
                                                             for: indexPath) as? MailCollectionViewCell
-        else {return UICollectionViewCell()}
+        else {
+            return UICollectionViewCell()
+        }
         let mailLabelText = verificationModel.filteredMailArray[indexPath.row]
         cell.cellConfigure(mailLabelText: mailLabelText)
         return cell
     }
 }
+
 // MARK: - SelectProposedMailProtocol
 
 extension AuthenticationVC: SelectProposedMailProtocol {
@@ -208,6 +229,7 @@ extension AuthenticationVC {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
+    
     @objc private func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo
         let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
@@ -217,4 +239,4 @@ extension AuthenticationVC {
     @objc private func keyboardWillHide(notification: NSNotification) {
         myView.scrollView.contentOffset = CGPoint.zero
     }
- }
+}

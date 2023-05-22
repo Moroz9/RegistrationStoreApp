@@ -81,34 +81,34 @@ extension LogInViewVC: LogInViewDelegate {
     }
     
     func logInButtonAuthTapped() {
-//        let emailNameText = myLogView.mailTextFieldLogIn.text ?? ""
-//        let passwordText = myLogView.passwordTextFieldLogIn.text ?? ""
-//        let checkEmail = checkEmail(mail: emailNameText)
-//        let checkPassword = checkPassword(password: passwordText)
-//
-//        if passwordText.isValidType(validType: passwordValidType)
-//            && emailNameText.isValidType(validType: emailValidType) == true {
-//
-//            if checkEmail == true {
-//                if checkPassword == true {
+        let emailNameText = myLogView.mailTextFieldLogIn.text ?? ""
+        let passwordText = myLogView.passwordTextFieldLogIn.text ?? ""
+        let checkEmail = checkEmail(mail: emailNameText)
+        let checkPassword = checkPassword(password: passwordText)
+
+        if passwordText.isValidType(validType: passwordValidType)
+            && emailNameText.isValidType(validType: emailValidType) == true {
+
+            if checkEmail == true {
+                if checkPassword == true {
                     let controller = MainTabBarController()
                     navigationController?.navigationBar.isHidden = true
                     navigationController?.pushViewController(controller, animated: true)
-//                } else {
-//                    myLogView.statusLabelLogin.alpha = 1
-//                    myLogView.statusLabelLogin.textColor = .red
-//                    myLogView.statusLabelLogin.text = "Please checked password"
-//                }
-//            } else {
-//                myLogView.statusLabelLogin.alpha = 1
-//                myLogView.statusLabelLogin.textColor = .red
-//                myLogView.statusLabelLogin.text = "Please checked email"
-//            }
-//        } else {
-//            myLogView.statusLabelLogin.alpha = 1
-//            myLogView.statusLabelLogin.textColor = .red
-//            myLogView.statusLabelLogin.text = "Fill in all the fields"
-//        }
+                } else {
+                    myLogView.statusLabelLogin.alpha = 1
+                    myLogView.statusLabelLogin.textColor = .red
+                    myLogView.statusLabelLogin.text = "Please checked password"
+                }
+            } else {
+                myLogView.statusLabelLogin.alpha = 1
+                myLogView.statusLabelLogin.textColor = .red
+                myLogView.statusLabelLogin.text = "Please checked email"
+            }
+        } else {
+            myLogView.statusLabelLogin.alpha = 1
+            myLogView.statusLabelLogin.textColor = .red
+            myLogView.statusLabelLogin.text = "Fill in all the fields"
+        }
     }
 }
 
@@ -206,9 +206,9 @@ extension LogInViewVC {
     }
     @objc private func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo
-        guard let keyboardHeigth = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
+        guard let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
                                     NSValue)?.cgRectValue else { return }
-        myLogView.scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeigth.height / 3 )
+        myLogView.scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 3 )
     }
     @objc private func keyboardWillHide(notification: Notification) {
         myLogView.scrollView.contentOffset = CGPoint.zero
