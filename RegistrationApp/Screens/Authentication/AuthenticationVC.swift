@@ -35,6 +35,7 @@ final class AuthenticationVC: AAuthenticationViewController<AuthenticationView> 
         myView.lastNameTextField.delegate = self
         myView.passwordTextField.delegate = self
     }
+    
     private func checkEmail(mail: String) -> Bool {
             if storage.string(forKey: .email) == mail {
                 return true
@@ -175,7 +176,7 @@ extension AuthenticationVC: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 }
@@ -195,7 +196,7 @@ extension AuthenticationVC: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let mailLabelText = verificationModel.filteredMailArray[indexPath.row]
-        cell.cellConfigure(mailLabelText: mailLabelText)
+        cell.configure(withMailLabelText: mailLabelText)
         return cell
     }
 }

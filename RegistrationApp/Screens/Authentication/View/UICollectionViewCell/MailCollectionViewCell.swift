@@ -16,14 +16,14 @@ final class MailCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupViews() {
@@ -33,18 +33,14 @@ final class MailCollectionViewCell: UICollectionViewCell {
         addSubview(domainLabel)
     }
     
-    private func configure(mailLabelText: String) {
-        domainLabel.text = mailLabelText
-    }
-    
-    func cellConfigure(mailLabelText: String) {
-        configure(mailLabelText: mailLabelText)
-    }
-    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             domainLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             domainLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    func configure(withMailLabelText mailLabelText: String) {
+        domainLabel.text = mailLabelText
     }
 }

@@ -16,14 +16,14 @@ protocol AuthenticationViewDelegate: AnyObject {
 
 final class AuthenticationView: UIView {
     
-    // MARK: - Var/Let
+    // MARK: - Properties
     
-    let contentViewBack = UIView(backgroundColorView: Color.backgroundView)
-    let contentView: UIView = {
-        let imageView = UIView()
-        imageView.backgroundColor = Color.backgroundView
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let contentViewBack = UIView(backgroundColorView: Color.backgroundView)
+    private let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Color.backgroundView
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     let scrollView = UIScrollView(imageName: nil)
@@ -50,18 +50,19 @@ final class AuthenticationView: UIView {
                                      axis: .vertical, spacing: 20)
     weak var delegate: AuthenticationViewDelegate?
     
-    // MARK: - Lifecycle func
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setConstrains()
+        setConstraints()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Flow func
+    // MARK: - Private Methods
     
     private func setupView() {
         addSubview(contentViewBack)
@@ -74,34 +75,37 @@ final class AuthenticationView: UIView {
         appleButtonAuth.addTarget(self, action: #selector(appleButtonAuthTapped), for: .touchUpInside)
     }
     
-    // MARK: - Flow func(@objc)
+    // MARK: - Private Methods (@objc)
     
-    @objc func signInButtonAuthTapped() {
+    @objc private func signInButtonAuthTapped() {
         delegate?.signInButtonAuthTapped()
     }
-    @objc func logInButtonAuthTapped() {
+    
+    @objc private func logInButtonAuthTapped() {
         delegate?.logInButtonAuthTapped()
     }
-    @objc func googleButtonAuthTapped() {
+    
+    @objc private func googleButtonAuthTapped() {
         delegate?.googleButtonTapped()
     }
-    @objc func appleButtonAuthTapped() {
+    
+    @objc private func appleButtonAuthTapped() {
         delegate?.appleButtonTapped()
     }
-}
-// MARK: - setConstrains
-extension AuthenticationView {
-    private func setConstrains() {
+    
+    // MARK: - Constraints
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            contentViewBack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            contentViewBack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            contentViewBack.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            contentViewBack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            contentViewBack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentViewBack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentViewBack.topAnchor.constraint(equalTo: topAnchor),
+            contentViewBack.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             contentView.heightAnchor.constraint(equalTo: heightAnchor),
             contentView.widthAnchor.constraint(equalTo: widthAnchor),
@@ -116,7 +120,6 @@ extension AuthenticationView {
             passwordTextField.heightAnchor.constraint(equalToConstant: 29),
             mailTextField.heightAnchor.constraint(equalToConstant: 29),
             
-            signInButtonAuth.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 20),
             signInButtonAuth.heightAnchor.constraint(equalToConstant: 46),
             
             collectionView.heightAnchor.constraint(equalToConstant: 50),

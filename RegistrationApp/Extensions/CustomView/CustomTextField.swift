@@ -1,5 +1,5 @@
 //
-//  CastumTextField.swift
+//  CustomTextField.swift
 //  RegistrationApp
 //
 //  Created by Viktor Morozov on 08.04.23.
