@@ -8,20 +8,21 @@
 import UIKit
 
 extension UIImageView {
-    convenience init(imageName: String ) {
+    convenience init(imageName: String) {
         self.init()
-        let image = UIImage(named: imageName)
-        self.image = image
-        self.contentMode = .scaleAspectFit
-        self.translatesAutoresizingMaskIntoConstraints = false
+        image = UIImage(named: imageName)
+        contentMode = .scaleAspectFit
+        translatesAutoresizingMaskIntoConstraints = false
     }
-    func loadFrom (URLAddress: String) {
+
+    func loadFrom(URLAddress: String) {
         guard let url = URL(string: URLAddress) else {
             return
         }
-        DispatchQueue.main.async { [weak self] in
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
+
+        DispatchQueue.global().async { [weak self] in
+            if let imageData = try? Data(contentsOf: url), let loadedImage = UIImage(data: imageData) {
+                DispatchQueue.main.async {
                     self?.image = loadedImage
                 }
             }

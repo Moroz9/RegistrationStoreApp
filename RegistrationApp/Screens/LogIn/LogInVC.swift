@@ -50,6 +50,10 @@ final class LogInViewVC: ALogInViewController<LogInView> {
                 return false
             }
         
+        guard checkStorage(mail: emailText, password: passwordText) else {
+          return false
+        }
+        
         return true
     }
     
@@ -88,12 +92,6 @@ extension LogInViewVC: LogInViewDelegate {
     func logInButtonAuthTapped() {
         guard validateTextFields() else { return }
        
-        let passwordText = myLogView.passwordTextFieldLogIn.text ?? ""
-        let emailText = myLogView.mailTextFieldLogIn.text ?? ""
-        
-        guard checkStorage(mail: emailText, password: passwordText) else {
-          return
-        }
         navigateToMainTabBarController()
         
     }

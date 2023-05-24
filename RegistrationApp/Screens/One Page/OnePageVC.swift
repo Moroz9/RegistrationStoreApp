@@ -8,6 +8,7 @@
 import UIKit
 
 final class OnePageVC: UIViewController {
+    
     // MARK: - Let \ Var
     
     private let searchTextField = SearchTextField()
@@ -40,6 +41,7 @@ final class OnePageVC: UIViewController {
     var pageData: [ListSection] {
         [category, .latest(latestItems), .flashSale(flashSales)]
     }
+    
     // MARK: - Lifecycle func
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +108,7 @@ final class OnePageVC: UIViewController {
             }
         }
     }
+    
     // MARK: - Flow func
     
     private func setupViews() {
@@ -113,8 +116,8 @@ final class OnePageVC: UIViewController {
         backgroundImageView.addSubview(searchTextField)
         backgroundImageView.addSubview(collectionView)
         
-        let clipPathGroup = createCustomButtonPageOne(imageName: "Image.clippathgroup", selector: #selector (barButtonTapped))
-        let customTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: "location", contactImage: "Image.imagePhoto")
+        let clipPathGroup = createCustomButtonPageOne(imageName: "Clippathgroup", selector: #selector (barButtonTapped))
+        let customTitleView = createCustomTitleViewPageOne(contactName: updateAttributesText(), contactDescription: "location", contactImage: "imageProfillle")
         navigationItem.leftBarButtonItem = clipPathGroup
         navigationItem.titleView = customTitleView
         
@@ -132,10 +135,12 @@ final class OnePageVC: UIViewController {
         
         collectionView.collectionViewLayout = createLayout()
     }
+    
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
     @objc func barButtonTapped() {
         print("tab")
     }
@@ -162,6 +167,7 @@ extension OnePageVC {
         ])
     }
 }
+
 extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return pageData.count

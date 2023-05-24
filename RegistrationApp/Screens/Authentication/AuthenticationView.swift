@@ -50,7 +50,7 @@ final class AuthenticationView: UIView {
                                      axis: .vertical, spacing: 20)
     weak var delegate: AuthenticationViewDelegate?
     
-    // MARK: - Initializers
+    // MARK: - Initialisers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
