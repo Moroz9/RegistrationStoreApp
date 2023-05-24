@@ -39,3 +39,23 @@
 <p float="left">
   <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/4d82cc71-d1fd-406b-bb3f-3547b6db0a1b" width="30%" /> 
 </p>
+
+##
+
+### Четвертый экран:
+Сценарии использования:
+
+•	Взаимодействие с Tab Bar
+
+•	На экране выводится вся доступная информация о Categories, latest, Flash sales, 
+
+•	Пользователь может воспользоваться Search Bar для поиска 
+
+•	Добавить товар в корзицу 
+
+•	В строке локация, будет отображаться место нахождение пользователя 
+
+<p float="left">
+  <img src="https://github.com/Moroz9/RegistrationStoreApp/assets/126159245/40d24695-31c7-4170-9a14-69a332d040e8" width="30%" /> 
+</p>
+
