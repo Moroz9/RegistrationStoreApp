@@ -127,7 +127,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.idProfileButtonCell, for: indexPath) as? ButtonUpLoadTableViewCell else {
                 return UITableViewCell()
             }
-            let item = items[indexPath.row]
+            _ = items[indexPath.row]
             return cell
             
         case .idProfileButtonSettingsCell(let items):
