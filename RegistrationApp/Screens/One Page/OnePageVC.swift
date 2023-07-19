@@ -58,13 +58,13 @@ final class OnePageVC: UIViewController {
         fetchBrands()
         
         func fetchLatestCategory() {
-            let url = "https://run.mocky.io/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7"
+            let url = "https://run.mocky.io/v3/058729bd-1402-4578-88de-265481fd7d54"
             NetworkManager.shared.fetchLatestCategoryModel(urlString: url) { [weak self] result in
                 guard let self else { return }
                 switch result {
                 case .success(let latestItems):
                     DispatchQueue.main.async {
-                        self.latestItems = latestItems.latest
+                        self.latestItems = latestItems.сategories
                         self.collectionView.reloadData()
                     }
 
@@ -186,7 +186,7 @@ extension OnePageVC: UICollectionViewDelegate, UICollectionViewDataSource {
         case .latest(let latest):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.latestCollectionViewCell,
                 for: indexPath) as? LatestCollectionViewCell else { return UICollectionViewCell()}
-            cell.configureCell(category: latest[indexPath.row].category, name: latest[indexPath.row].name, price: latest[indexPath.row].price, imageUrl: latest[indexPath.row].image_url)
+            cell.configureCell(category: latest[indexPath.row].name, name: latest[indexPath.row].name, price: Double(latest[indexPath.row].id), imageUrl: latest[indexPath.row].image_url)
             return cell
         case .flashSale(let flashSale):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.fastSaleCollectionViewCell,

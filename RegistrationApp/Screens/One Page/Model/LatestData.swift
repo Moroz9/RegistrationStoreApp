@@ -10,20 +10,21 @@ import Foundation
 
 // MARK: - Latest
 
+//   swiftlint:disable all
+
+
 struct LatestData: Decodable {
-    let latest: [LatestElement]
+    let сategories: [LatestElement]
 }
 
-// MARK: - LatestElement
-
+// MARK: - Сategory
 struct LatestElement: Decodable {
-    let category, name: String
-    let price: Double
+    let id: Int
+    let name: String
     let image_url: String
 
     enum CodingKeys: String, CodingKey {
-        case category, name, price
+        case id, name
         case image_url = "image_url"
     }
 }
-//   swiftlint:disable all
